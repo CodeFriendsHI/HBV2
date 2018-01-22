@@ -2,13 +2,22 @@
 
 
 ## Þjálfari - Fannar G. Guðmundsson
-Er í forystu og leiðbeinir á fundum þar sem hópurinn er að forrita og hanna. Þjálfarinn hefur yfirsýn yfir hvernig teyminu gengur og hvetur aðra áfram. Þjálfarinn passar upp á að teymið vinni eftir góðri aðferð. 
+* Er í forystu og leiðbeinir á fundum þar sem hópurinn er að forrita og hanna. 
+* Þjálfarinn hefur yfirsýn yfir hvernig teyminu gengur og hvetur aðra áfram. 
+* Þjálfarinn passar upp á að teymið vinni eftir góðri aðferð. 
 
 ## Viðskiptafulltrúi - Daníel Guðnason
-Hefur samskipti við viðskiptavininn eða ef enginn eiginlegur viðskiptavinur er segir sögur viðskiptavinarins. Ákveður hvað er mikilvægt í hverjum spretti og skilgreinir viðtökupróf. Viðskiptafulltrúi hannar notendaviðmótið og passar upp á að notaðar séu notendamiðaðar aðferðir. Passar upp á að safna athugasemdum frá viðskiptavininum. 
+* Hefur samskipti við viðskiptavininn eða ef enginn eiginlegur viðskiptavinur er segir sögur viðskiptavinarins.
+* Ákveður hvað er mikilvægt í hverjum spretti og skilgreinir viðtökupróf. 
+* Viðskiptafulltrúi hannar notendaviðmótið og passar upp á að notaðar séu notendamiðaðar aðferðir. 
+* Passar upp á að safna athugasemdum frá viðskiptavininum. 
 
 ## Kóða- og hönnunarstjóri - Aðalsteinn I. Pálsson
-Sér um útgáfu stjórnun, setur kóðastaðla, stýrir paraforritun. Sér um að kóði sé rýndur og samþykkir Git branch í master. Gefur út hugbúnaðinn. Hjálpar öðrum með einingaprófanir eða aðrar prófanir. Vinnur að því að einfalda hönnun og refactora. 
+* Sér um útgáfu stjórnun, setur kóðastaðla, stýrir paraforritun. 
+* Sér um að kóði sé rýndur og samþykkir Git branch í master. 
+* Gefur út hugbúnaðinn. Hjálpar öðrum með einingaprófanir eða aðrar prófanir. 
+* Vinnur að því að einfalda hönnun og refactora. 
 
 ## Viðhalds- og kynningarstjóri - Geir Garðarsson
-Heldur utan um skjölun forrita og uppsetningu. Passar upp á sameiginlegt vinnusvæði og samskiptasvæði. Er kynnir verkefnisins og sýningarstjóri. 
+* Heldur utan um skjölun forrita og uppsetningu. Passar upp á sameiginlegt vinnusvæði og samskiptasvæði. 
+* Er kynnir verkefnisins og sýningarstjóri. 
