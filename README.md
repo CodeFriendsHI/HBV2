@@ -19,5 +19,6 @@
 * Vinnur að því að einfalda hönnun og refactora. 
 
 ## Viðhalds- og kynningarstjóri**(Intern) - Geir Garðarsson [Github](https://github.com/geirgardarsson)
-* Heldur utan um skjölun forrita og uppsetningu. Passar upp á sameiginlegt vinnusvæði og samskiptasvæði. 
+* Heldur utan um skjölun forrita og uppsetningu. 
+* Passar upp á sameiginlegt vinnusvæði og samskiptasvæði. 
 * Er kynnir verkefnisins og sýningarstjóri. 
