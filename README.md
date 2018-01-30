@@ -1,4 +1,4 @@
-# SuperAwesomeNerdCoffeeDetector
+# KewlKoffee
 
 
 ## Þjálfari**(CEO) - Fannar G. Guðmundsson [Github](https://github.com/fgg2)
