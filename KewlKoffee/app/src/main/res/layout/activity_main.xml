@@ -1,38 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.codefriends.kewlkoffee.MainActivity">
 
-    <EditText
-        android:id="@+id/editText"
-        style="@style/Widget.AppCompat.EditText"
-        android:layout_width="match_parent"
-        android:layout_height="105dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:selectAllOnFocus="false"
-        android:singleLine="false"
-        android:text="KewlKoffee"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
-
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-    </android.support.design.widget.AppBarLayout>
-
-    <include layout="@layout/content_main" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+    <TextView
+        android:id="@+id/headerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:text="KewlKoffee"
+        android:layout_alignParentTop="true"
+        android:textSize="50dp"
+        android:fontFamily="sans-serif-light"/>
 
-</android.support.design.widget.CoordinatorLayout>
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_above="@+id/btn_play_pause"
+        android:layout_width="match_parent"
+        android:layout_height="700px" />
+
+    <ImageButton
+        android:layout_alignParentBottom="true"
+        android:id="@+id/btn_play_pause"
+        android:src="@drawable/ic_play"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
