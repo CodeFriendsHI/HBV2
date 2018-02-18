@@ -1,25 +1,28 @@
 package com.example.codefriends.kewlkoffee;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.VideoView;
 
-public class MainActivity extends AppCompatActivity implements  View.OnClickListener {
+public class StreamActivity extends AppCompatActivity implements  View.OnClickListener {
 
     ProgressDialog dialog;
     VideoView videoView;
     ImageButton btnPlayPause;
 
     String videoURL = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
+
+    public static Intent newIntent (Context packageContext) {
+        Intent intent = new Intent(packageContext, StreamActivity.class);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
 
     @Override
     public void onClick(View v){
-        dialog = new ProgressDialog(MainActivity.this);
+        dialog = new ProgressDialog(StreamActivity.this);
         dialog.setMessage("Please wait....");
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
