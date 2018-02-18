@@ -11,17 +11,19 @@ import java.util.stream.Stream;
 
 public class BoardActivity extends AppCompatActivity {
 
-    private static final String EXTRA_ANSWER_IS_TRUE =
-            "com.example.codefriends.kewlkoffee.answer_is_true";
-
-    private static final String EXTRA_ANSWER_SHOWN =
-            "com.example.codefriends.kewlkoffee.answer_shown";
 
     private Button switchButton;
+    private Button cameraButton;
 
     public static Intent newIntent (Context packageContext) {
         Intent intent = new Intent(packageContext, StreamActivity.class);
-        intent.putExtra(EXTRA_ANSWER_IS_TRUE, true);
+
+        return intent;
+    }
+
+    public static Intent newCamera (Context packageContext) {
+        Intent intent = new Intent(packageContext, ImageCaptureCamera2API.class);
+
         return intent;
     }
 
@@ -40,6 +42,23 @@ public class BoardActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         //   Intent intent = new Intent(QuizActivity.this, CheatActivity.class);
                         Intent intent = StreamActivity.newIntent(BoardActivity.this);
+                        //            startActivity(intent);
+                        // Starting an activity and hoping to get result
+                        startActivityForResult(intent, 0);
+
+                    }
+                });}});
+
+        cameraButton = findViewById(R.id.button2);
+        cameraButton.setOnClickListener (new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start CheatActivity
+                cameraButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //   Intent intent = new Intent(QuizActivity.this, CheatActivity.class);
+                        Intent intent = ImageCaptureCamera2API.newIntent(BoardActivity.this);
                         //            startActivity(intent);
                         // Starting an activity and hoping to get result
                         startActivityForResult(intent, 0);
