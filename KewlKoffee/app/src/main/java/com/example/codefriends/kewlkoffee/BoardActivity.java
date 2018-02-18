@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -33,37 +34,30 @@ public class BoardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_board);
 
         switchButton = findViewById(R.id.button);
+        cameraButton = findViewById(R.id.button2);
+
         switchButton.setOnClickListener (new View.OnClickListener() {
+
+
             @Override
             public void onClick(View v) {
+                Log.d("Hello","WARLOCK");
                 // Start CheatActivity
-                switchButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //   Intent intent = new Intent(QuizActivity.this, CheatActivity.class);
-                        Intent intent = StreamActivity.newIntent(BoardActivity.this);
-                        //            startActivity(intent);
-                        // Starting an activity and hoping to get result
-                        startActivityForResult(intent, 0);
-
-                    }
-                });}});
-
-        cameraButton = findViewById(R.id.button2);
+                //   Intent intent = new Intent(QuizActivity.this, CheatActivity.class);
+                Intent intent = StreamActivity.newIntent(BoardActivity.this);
+                //            startActivity(intent);
+                // Starting an activity and hoping to get result
+                startActivityForResult(intent, 0);
+                }});
         cameraButton.setOnClickListener (new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start CheatActivity
-                cameraButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //   Intent intent = new Intent(QuizActivity.this, CheatActivity.class);
-                        Intent intent = ImageCaptureCamera2API.newIntent(BoardActivity.this);
-                        //            startActivity(intent);
-                        // Starting an activity and hoping to get result
-                        startActivityForResult(intent, 0);
-
-                    }
-                });}});
+                //   Intent intent = new Intent(QuizActivity.this, CheatActivity.class);
+                Intent intent = ImageCaptureCamera2API.newIntent(BoardActivity.this);
+                //            startActivity(intent);
+                // Starting an activity and hoping to get result
+                startActivityForResult(intent, 0);
+            }});
     }
 }
