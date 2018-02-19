@@ -97,7 +97,10 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
           /*  public void onClick(View v) {
                 takePicture();
             }*/
-          public void onClick(View v) {stream = !stream; }
+          public void onClick(View v) {
+              stream = !stream;
+              delay();
+          }
         });
 
     }
@@ -254,7 +257,7 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
         if(stream){
             delay();
         }
-        
+
 
     }
         protected void createCameraPreview() {
