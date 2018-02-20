@@ -6,14 +6,25 @@ package com.example.codefriends.kewlkoffee;
 
 public class RoomsControl {
 
+    public Rooms[] rooms =  new Rooms[20];
+
+
+    public RoomsControl(){
+
+        for (int i = 0; i < 20;i++) {
+            rooms[i] = new Rooms(i, "la", "la", "la");
+        }
+    }
+
+
 
     /**
      *
      * get all the rooms via server
      *
      */
-    public void getRooms(){
-
+    public Rooms[] getRooms(){
+        return rooms;
     }
 
     /**
