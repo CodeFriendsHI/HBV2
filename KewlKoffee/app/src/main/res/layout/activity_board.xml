@@ -15,18 +15,11 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="8dp">L
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="93dp"
-                android:text="Stream" />
-
+            tools:layout_editor_absoluteY="25dp">
             <Button
                 android:id="@+id/button2"
                 android:layout_width="match_parent"
-                android:layout_height="95dp"
+                android:layout_height="120dp"
                 android:text="Camera" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
