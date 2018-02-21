@@ -1,16 +1,3 @@
-/*package com.example.codefriends.kewlkoffee.image;
-
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
-public class ImageCaptureCamera2API extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_image_capture_camera2_api);
-    }
-}*/
 
 package com.example.codefriends.kewlkoffee;
 
@@ -94,9 +81,6 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
         assert takePictureButton != null;
         takePictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
-          /*  public void onClick(View v) {
-                takePicture();
-            }*/
           public void onClick(View v) {
               stream = !stream;
               delay();
