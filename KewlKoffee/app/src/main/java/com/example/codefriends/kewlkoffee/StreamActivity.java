@@ -1,22 +1,21 @@
 package com.example.codefriends.kewlkoffee;
 
 import android.app.ProgressDialog;
-import android.media.MediaPlayer;
-import android.net.Uri;
+import android.content.Context;
+import android.content.Intent;
+
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.VideoView;
 
 import com.squareup.picasso.Picasso;
 
-public class MainActivity extends AppCompatActivity {
+
+import com.squareup.picasso.Picasso;
+
+public class StreamActivity extends AppCompatActivity {
 
     ProgressDialog dialog;
     ImageView imageView;
@@ -25,6 +24,11 @@ public class MainActivity extends AppCompatActivity {
     String imageUrl = "https://pics.me.me/cp-399-cp-920-pupper-doggo-26715445.png";
 
 
+
+    public static Intent newIntent (Context packageContext) {
+        Intent intent = new Intent(packageContext, StreamActivity.class);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

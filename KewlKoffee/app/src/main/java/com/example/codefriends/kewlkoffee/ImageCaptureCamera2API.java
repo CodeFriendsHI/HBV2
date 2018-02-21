@@ -4,6 +4,7 @@ package com.example.codefriends.kewlkoffee;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
@@ -70,6 +71,12 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
     private boolean mFlashSupported;
     private Handler mBackgroundHandler;
     private HandlerThread mBackgroundThread;
+
+    public static Intent newIntent (Context packageContext) {
+        Intent intent = new Intent(packageContext, ImageCaptureCamera2API.class);
+        return intent;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
