@@ -1,16 +1,3 @@
-/*package com.example.codefriends.kewlkoffee.image;
-
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
-public class ImageCaptureCamera2API extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_image_capture_camera2_api);
-    }
-}*/
 
 package com.example.codefriends.kewlkoffee;
 
@@ -62,6 +49,9 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
     private Button takePictureButton;
     private TextureView textureView;
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
+
+    //kveikja á "streymi"
+    private boolean stream = false;
     static {
         ORIENTATIONS.append(Surface.ROTATION_0, 90);
         ORIENTATIONS.append(Surface.ROTATION_90, 0);
@@ -91,10 +81,12 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
         assert takePictureButton != null;
         takePictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                takePicture();
-            }
+          public void onClick(View v) {
+              stream = !stream;
+              delay();
+          }
         });
+
     }
     TextureView.SurfaceTextureListener textureListener = new TextureView.SurfaceTextureListener() {
         @Override
@@ -147,6 +139,7 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
     }
     protected void stopBackgroundThread() {
         mBackgroundThread.quitSafely();
+
         try {
             mBackgroundThread.join();
             mBackgroundThread = null;
@@ -156,7 +149,8 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
         }
     }
     protected void takePicture() {
-        if(null == cameraDevice) {
+
+        if (null == cameraDevice) {
             Log.e(TAG, "cameraDevice is null");
             return;
         }
@@ -183,7 +177,7 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
             // Orientation
             int rotation = getWindowManager().getDefaultDisplay().getRotation();
             captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation));
-            final File file = new File(Environment.getExternalStorageDirectory()+"/pic.jpg");
+            final File file = new File(Environment.getExternalStorageDirectory() + "/pic.jpg");
             ImageReader.OnImageAvailableListener readerListener = new ImageReader.OnImageAvailableListener() {
                 @Override
                 public void onImageAvailable(ImageReader reader) {
@@ -204,6 +198,7 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
                         }
                     }
                 }
+
                 private void save(byte[] bytes) throws IOException {
                     OutputStream output = null;
                     try {
@@ -234,6 +229,7 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+
                 @Override
                 public void onConfigureFailed(CameraCaptureSession session) {
                 }
@@ -241,34 +237,41 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
-    }
-    protected void createCameraPreview() {
-        try {
-            SurfaceTexture texture = textureView.getSurfaceTexture();
-            assert texture != null;
-            texture.setDefaultBufferSize(imageDimension.getWidth(), imageDimension.getHeight());
-            Surface surface = new Surface(texture);
-            captureRequestBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
-            captureRequestBuilder.addTarget(surface);
-            cameraDevice.createCaptureSession(Arrays.asList(surface), new CameraCaptureSession.StateCallback(){
-                @Override
-                public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
-                    //The camera is already closed
-                    if (null == cameraDevice) {
-                        return;
-                    }
-                    // When the session is ready, we start displaying the preview.
-                    cameraCaptureSessions = cameraCaptureSession;
-                    updatePreview();
-                }
-                @Override
-                public void onConfigureFailed(@NonNull CameraCaptureSession cameraCaptureSession) {
-                    Toast.makeText(ImageCaptureCamera2API.this, "Configuration change", Toast.LENGTH_SHORT).show();
-                }
-            }, null);
-        } catch (CameraAccessException e) {
-            e.printStackTrace();
+
+        if(stream){
+            delay();
         }
+
+
+    }
+        protected void createCameraPreview() {
+            try {
+                SurfaceTexture texture = textureView.getSurfaceTexture();
+                assert texture != null;
+                texture.setDefaultBufferSize(imageDimension.getWidth(), imageDimension.getHeight());
+                Surface surface = new Surface(texture);
+                captureRequestBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
+                captureRequestBuilder.addTarget(surface);
+                cameraDevice.createCaptureSession(Arrays.asList(surface), new CameraCaptureSession.StateCallback(){
+                    @Override
+                    public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
+                        //The camera is already closed
+                        if (null == cameraDevice) {
+                            return;
+                        }
+                        // When the session is ready, we start displaying the preview.
+                        cameraCaptureSessions = cameraCaptureSession;
+                        updatePreview();
+                    }
+                    @Override
+                    public void onConfigureFailed(@NonNull CameraCaptureSession cameraCaptureSession) {
+                        Toast.makeText(ImageCaptureCamera2API.this, "Configuration change", Toast.LENGTH_SHORT).show();
+                    }
+                }, null);
+            } catch (CameraAccessException e) {
+                e.printStackTrace();
+            }
+
     }
     private void openCamera() {
         CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
@@ -338,5 +341,16 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
         //closeCamera();
         stopBackgroundThread();
         super.onPause();
+    }
+
+    void delay (){
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Do something after 5s = 5000ms
+                takePicture();
+            }
+        }, 5000);
     }
 }
