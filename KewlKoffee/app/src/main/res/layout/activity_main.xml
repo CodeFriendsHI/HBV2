@@ -16,8 +16,8 @@
         android:fontFamily="sans-serif-light"/>
 
 
-    <VideoView
-        android:id="@+id/videoView"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_above="@+id/btn_play_pause"
         android:layout_width="match_parent"
         android:layout_height="700px" />
