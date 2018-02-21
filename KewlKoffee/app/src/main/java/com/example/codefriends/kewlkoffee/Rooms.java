@@ -34,5 +34,9 @@ public class Rooms {
         return "kewl";
     }
 
+    public String getStream(){
+        return stream;
+    }
+
 
 }

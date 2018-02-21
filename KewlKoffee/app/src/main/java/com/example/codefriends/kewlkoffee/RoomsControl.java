@@ -12,10 +12,9 @@ public class RoomsControl {
     public RoomsControl(){
 
         for (int i = 0; i < 20;i++) {
-            rooms[i] = new Rooms(i, "la", "la", "la");
+            rooms[i] = new Rooms(i, "la", "la", "https://www.althingi.is/myndir/mynd/thingmenn/162/org/mynd.jpg");
         }
     }
-
 
 
     /**

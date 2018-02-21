@@ -6,6 +6,7 @@ import android.content.Intent;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -17,11 +18,14 @@ import com.squareup.picasso.Picasso;
 
 public class StreamActivity extends AppCompatActivity {
 
+    public static Rooms r;
+
     ProgressDialog dialog;
     ImageView imageView;
     ImageButton btnPlayPause;
 
-    String imageUrl = "https://pics.me.me/cp-399-cp-920-pupper-doggo-26715445.png";
+    String imageUrl = r.getStream();
+
 
 
 

@@ -45,7 +45,6 @@ public class BoardActivity extends AppCompatActivity {
 
         final Rooms[] r = room.getRooms();
 
-        Log.i("hallo", "onCreate: "+r.length);
 
 
         LinearLayout layout = (LinearLayout) findViewById(R.id.layout);
@@ -64,6 +63,7 @@ public class BoardActivity extends AppCompatActivity {
                 Button buttonItem = new Button(this);
                 buttonItem.setText("Stream " + i);
                 buttonItem.setBackgroundResource(R.drawable.ic_test);
+                final int finalI = i;
                 buttonItem.setOnClickListener (new View.OnClickListener() {
 
 
@@ -71,6 +71,7 @@ public class BoardActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         // Start CheatActivity
                         //   Intent intent = new Intent(QuizActivity.this, CheatActivity.class);
+                        StreamActivity.r = r[finalI];
                         Intent intent = StreamActivity.newIntent(BoardActivity.this);
                         //            startActivity(intent);
                         // Starting an activity and hoping to get result
