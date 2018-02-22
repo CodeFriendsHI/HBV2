@@ -6,13 +6,13 @@ package com.example.codefriends.kewlkoffee;
 
 public class RoomsControl {
 
-    public Rooms[] rooms =  new Rooms[20];
+    public Rooms[] rooms =  new Rooms[5];
 
 
     public RoomsControl(){
 
-        for (int i = 0; i < 20;i++) {
-            rooms[i] = new Rooms(i, "la", "la", "https://www.althingi.is/myndir/mynd/thingmenn/162/org/mynd.jpg");
+        for (int i = 0; i < 5;i++) {
+            rooms[i] = new Rooms(i, "Stream " + i, "la", "https:/kewlserver.herokuapp.com/" + i);
         }
     }
 

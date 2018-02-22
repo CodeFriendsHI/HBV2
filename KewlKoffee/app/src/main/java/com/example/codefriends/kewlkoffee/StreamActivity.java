@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
@@ -23,6 +24,7 @@ public class StreamActivity extends AppCompatActivity {
     ProgressDialog dialog;
     ImageView imageView;
     ImageButton btnPlayPause;
+    TextView nameView;
 
     String imageUrl = r.getStream();
 
@@ -40,6 +42,9 @@ public class StreamActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         imageView = findViewById(R.id.imageView);
+        nameView = findViewById(R.id.headerView);
+
+        nameView.setText(r.getName());
 
         btnPlayPause = findViewById(R.id.btn_play_pause);
         btnPlayPause.setOnClickListener(new View.OnClickListener() {

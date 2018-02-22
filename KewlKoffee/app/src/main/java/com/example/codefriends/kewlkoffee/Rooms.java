@@ -38,5 +38,9 @@ public class Rooms {
         return stream;
     }
 
+    public String getName(){
+        return name;
+    }
+
 
 }
