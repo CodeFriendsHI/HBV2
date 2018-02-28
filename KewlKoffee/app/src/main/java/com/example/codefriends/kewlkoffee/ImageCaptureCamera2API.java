@@ -26,6 +26,7 @@ import android.os.HandlerThread;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.util.Size;
 import android.util.SparseIntArray;
@@ -43,6 +44,11 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class ImageCaptureCamera2API extends AppCompatActivity {
@@ -71,6 +77,7 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
     private boolean mFlashSupported;
     private Handler mBackgroundHandler;
     private HandlerThread mBackgroundThread;
+    private imageService mImageService;
 
     public static Intent newIntent (Context packageContext) {
         Intent intent = new Intent(packageContext, ImageCaptureCamera2API.class);
@@ -86,11 +93,13 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
         textureView.setSurfaceTextureListener(textureListener);
         takePictureButton = (Button) findViewById(R.id.btn_takepicture);
         assert takePictureButton != null;
+        mImageService = retrofitInstance.getRetroInstance(getApplicationContext()).create(imageService.class);
         takePictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
           public void onClick(View v) {
               stream = !stream;
-              delay();
+                //System.out.println("Should take picture onclick");
+              takePicture();
           }
         });
 
@@ -195,6 +204,28 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
                         byte[] bytes = new byte[buffer.capacity()];
                         buffer.get(bytes);
                         save(bytes);
+
+
+                        String base = Base64.encodeToString(bytes, Base64.DEFAULT);
+                        Call call = mImageService.postImage(base);
+
+                        call.enqueue(new Callback() {
+
+                            @Override
+                            public void onResponse(Call call, Response response) {
+                                System.out.println("yay!");
+                                delay();
+
+
+                            }
+
+                            @Override
+                            public void onFailure(Call call, Throwable t) {
+                                System.out.println("oh no!");
+                            }
+                        });
+
+                        //System.out.println(call);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     } catch (IOException e) {
@@ -244,10 +275,11 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
-
+        /* hmm
         if(stream){
             delay();
         }
+        */
 
 
     }
@@ -350,14 +382,17 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
         super.onPause();
     }
 
+
     void delay (){
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // Do something after 5s = 5000ms
+                System.out.println("Should take picture run");
                 takePicture();
             }
         }, 5000);
     }
+
 }
