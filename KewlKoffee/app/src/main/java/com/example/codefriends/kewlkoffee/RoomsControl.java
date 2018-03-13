@@ -27,7 +27,7 @@ public class RoomsControl {
 
     public List<Rooms> rooms = new ArrayList<>(20);
 
-    private RoomService mRoomservice;
+    public static RoomService mRoomservice;
 
     private Retrofit retrofit;
 
@@ -36,7 +36,7 @@ public class RoomsControl {
     public RoomsControl(){
 
         for (int i = 0; i < 5;i++) {
-            rooms.add(new Rooms(i, "Stream " + i, "lala", "https:/kewlserver.herokuapp.com/" + i));
+            rooms.add(new Rooms(i, "Stream " + i, "lala", "https://kewlserver.herokuapp.com/streams/" + i));
         }
 
         retrofit = retrofitInstance.getClient("https:/kewlserver.herokuapp.com/");

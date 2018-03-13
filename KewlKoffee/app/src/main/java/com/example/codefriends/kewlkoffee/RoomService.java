@@ -16,7 +16,7 @@ public interface RoomService {
 
 
 
-    @GET("/{id}")
+    @GET("/streams/{id}")
     Call <ResponseBody> getStuff(@Path("id") int id);
 
 

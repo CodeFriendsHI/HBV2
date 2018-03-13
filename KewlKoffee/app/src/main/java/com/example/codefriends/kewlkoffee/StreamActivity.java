@@ -6,16 +6,20 @@ import android.content.Intent;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
+import java.io.IOException;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
-
-import com.squareup.picasso.Picasso;
+/**
+ * Edited 13/3 by Geir Gardarsson
+ */
 
 public class StreamActivity extends AppCompatActivity {
 
@@ -26,8 +30,8 @@ public class StreamActivity extends AppCompatActivity {
     ImageButton btnPlayPause;
     TextView nameView;
 
-    String imageUrl = r.getStream();
-
+    String streamUrl = r.getStream();
+    String imageUrl;
 
 
 
@@ -44,15 +48,34 @@ public class StreamActivity extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
         nameView = findViewById(R.id.headerView);
 
+        OkHttpClient client = new OkHttpClient();
+
+
+        Request request = new Request.Builder()
+                .url(streamUrl)
+                .build();
+
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, final Response response) throws IOException {
+                if (!response.isSuccessful()) {
+                    throw new IOException("Unexpected code " + response);
+                } else {
+                    imageUrl = response.body().string();
+                }
+            }
+        });
+
         nameView.setText(r.getName());
 
         btnPlayPause = findViewById(R.id.btn_play_pause);
-        btnPlayPause.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Picasso.with(getApplicationContext()).load(imageUrl).into(imageView);
-            }
-        });
+        btnPlayPause.setOnClickListener(view -> Picasso.with(getApplicationContext()).load(imageUrl).into(imageView));
 
     }
 
