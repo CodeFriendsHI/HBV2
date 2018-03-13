@@ -1,19 +1,46 @@
 package com.example.codefriends.kewlkoffee;
 
+import android.annotation.TargetApi;
+import android.os.Build;
+import android.os.Bundle;
+import android.support.annotation.RequiresApi;
+import android.view.TextureView;
+import android.view.View;
+import android.widget.Button;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import okhttp3.ResponseBody;
+import retrofit2.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+
 /**
  * Created by adalsteinn95 on 18.2.2018.
  */
 
 public class RoomsControl {
 
-    public Rooms[] rooms =  new Rooms[5];
+    public List<Rooms> rooms = new ArrayList<>(20);
+
+    private RoomService mRoomservice;
+
+    private Retrofit retrofit;
+
 
 
     public RoomsControl(){
 
         for (int i = 0; i < 5;i++) {
-            rooms[i] = new Rooms(i, "Stream " + i, "la", "https:/kewlserver.herokuapp.com/" + i);
+            rooms.add(new Rooms(i, "Stream " + i, "lala", "https:/kewlserver.herokuapp.com/" + i));
         }
+
+        retrofit = retrofitInstance.getClient("https:/kewlserver.herokuapp.com/");
+        mRoomservice = retrofit.create(RoomService.class);
     }
 
 
@@ -22,7 +49,8 @@ public class RoomsControl {
      * get all the rooms via server
      *
      */
-    public Rooms[] getRooms(){
+    public List<Rooms> getRooms(){
+
         return rooms;
     }
 
@@ -32,7 +60,7 @@ public class RoomsControl {
      *
      */
 
-    public void createRooms(){
+    public void createRoom(){
 
     }
 
@@ -42,9 +70,17 @@ public class RoomsControl {
      *
      */
 
-    public void findRooms(){
-
+    @android.support.annotation.RequiresApi(api = Build.VERSION_CODES.N)
+    public Optional<Rooms> findRooms(List<Rooms> rooms, final String search){
+        return rooms.stream()
+                .filter(i -> i.getName().equals(search)).findAny();
     }
 
+
+    public static void main(String[] args) {
+        RoomsControl a = new RoomsControl();
+
+
+    }
 
 }

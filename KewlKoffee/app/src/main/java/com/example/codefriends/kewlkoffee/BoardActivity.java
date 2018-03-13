@@ -2,6 +2,8 @@ package com.example.codefriends.kewlkoffee;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 public class BoardActivity extends AppCompatActivity {
@@ -19,12 +24,8 @@ public class BoardActivity extends AppCompatActivity {
 
     private Button switchButton;
     private Button cameraButton;
-    private RoomsControl room = new RoomsControl();
-    private Button[] boards;
-
-    {
-        boards = new Button[20];
-    }
+    private RoomsControl room;
+    private Button[] boards = new Button[20];
 
     public static Intent newIntent (Context packageContext) {
         Intent intent = new Intent(packageContext, StreamActivity.class);
@@ -38,13 +39,21 @@ public class BoardActivity extends AppCompatActivity {
         return intent;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
 
-        final Rooms[] r = room.getRooms();
+        room = new RoomsControl();
 
+        List<Rooms> r;
+        r = room.getRooms();
+
+        //Optional<Rooms> test = room.findRooms(r ,"lala");
+        //final Rooms rooms = test.get();
+
+        //System.out.print(rooms.getName());
 
 
         LinearLayout layout = (LinearLayout) findViewById(R.id.layout);
@@ -59,24 +68,17 @@ public class BoardActivity extends AppCompatActivity {
 
             layout.addView(textView, p);
 
-            for(int i = 0; i < r.length;i++){
+            for(int i = 0; i < 5;i++){
                 Button buttonItem = new Button(this);
                 buttonItem.setText("Stream " + i);
                 buttonItem.setBackgroundResource(R.drawable.ic_test);
-                final int finalI = i;
-                buttonItem.setOnClickListener (new View.OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View v) {
-                        // Start CheatActivity
-                        //   Intent intent = new Intent(QuizActivity.this, CheatActivity.class);
-                        StreamActivity.r = r[finalI];
-                        Intent intent = StreamActivity.newIntent(BoardActivity.this);
-                        //            startActivity(intent);
-                        // Starting an activity and hoping to get result
-                        startActivityForResult(intent, 0);
-                    }});
+                int finalI = i;
+                List<Rooms> finalR = r;
+                buttonItem.setOnClickListener ((View v) -> {
+                    StreamActivity.r = finalR.get(finalI);
+                    Intent intent = StreamActivity.newIntent(BoardActivity.this);
+                    startActivityForResult(intent, 0);
+                });
                 layout.addView(buttonItem, p);
             }
 
