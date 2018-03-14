@@ -3,6 +3,7 @@ package com.example.codefriends.kewlkoffee;
 
 
 import android.Manifest;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -25,6 +26,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
@@ -50,12 +52,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Created by Daníel Guðnason on //.
+ */
+
 
 public class ImageCaptureCamera2API extends AppCompatActivity {
     private static final String TAG = "ImageCaptureCamera2API";
     private Button takePictureButton;
     private TextureView textureView;
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
+    Context context = this;
+    // android:onClick="notify"/>
 
     //kveikja á "streymi"
     private boolean stream = false;
@@ -99,7 +107,10 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
           public void onClick(View v) {
               stream = !stream;
                 //System.out.println("Should take picture onclick");
-              takePicture();
+                System.out.println("fyrsta lína 110");
+                //notifytest(v);
+                takePicture();
+
           }
         });
 
@@ -394,5 +405,7 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
             }
         }, 5000);
     }
+
+
 
 }
