@@ -9,13 +9,15 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
-            android:id="@+id/layout"
+            android:id="@+id/mainLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="25dp">
+
             <Button
                 android:id="@+id/button2"
                 android:layout_width="match_parent"
@@ -23,5 +25,15 @@
                 android:text="Camera" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/newRoomButton"
+        android:layout_width="98dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="310dp"
+        android:layout_marginTop="540dp"
+        android:text="New Room"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

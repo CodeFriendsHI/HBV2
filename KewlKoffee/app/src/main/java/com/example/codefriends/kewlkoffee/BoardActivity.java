@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +26,7 @@ public class BoardActivity extends AppCompatActivity {
 
     private Button switchButton;
     private Button cameraButton;
+    private Button newRoom;
     private RoomsControl room;
     private Button[] boards = new Button[20];
 
@@ -56,7 +59,7 @@ public class BoardActivity extends AppCompatActivity {
         //System.out.print(rooms.getName());
 
 
-        LinearLayout layout = (LinearLayout) findViewById(R.id.layout);
+        LinearLayout layout = findViewById(R.id.mainLayout);
             TextView textView = new TextView(this);
             textView.setText("Board of streams");
             textView.setTextSize(24);
@@ -68,7 +71,7 @@ public class BoardActivity extends AppCompatActivity {
 
             layout.addView(textView, p);
 
-            for(int i = 0; i < 5;i++){
+            for(int i = 0; i < r.size();i++){
                 Button buttonItem = new Button(this);
                 buttonItem.setText("Stream " + i);
                 buttonItem.setBackgroundResource(R.drawable.ic_test);
@@ -82,17 +85,20 @@ public class BoardActivity extends AppCompatActivity {
                 layout.addView(buttonItem, p);
             }
 
-
         cameraButton = findViewById(R.id.button2);
-        cameraButton.setOnClickListener (new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start CheatActivity
-                //   Intent intent = new Intent(QuizActivity.this, CheatActivity.class);
-                Intent intent = ImageCaptureCamera2API.newIntent(BoardActivity.this);
-                //            startActivity(intent);
-                // Starting an activity and hoping to get result
-                startActivityForResult(intent, 0);
-            }});
+        cameraButton.setOnClickListener (v -> {
+            // Start CheatActivity
+            //   Intent intent = new Intent(QuizActivity.this, CheatActivity.class);
+            Intent intent = ImageCaptureCamera2API.newIntent(BoardActivity.this);
+            //            startActivity(intent);
+            // Starting an activity and hoping to get result
+            startActivityForResult(intent, 0);
+        });
+
+        newRoom = findViewById(R.id.newRoomButton);
+        newRoom.setOnClickListener(v -> {
+            System.out.println(room.getRooms().size());
+            room.createRoom("name", "admin", "url");
+        });
     }
 }

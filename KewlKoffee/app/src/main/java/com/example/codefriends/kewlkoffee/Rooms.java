@@ -9,7 +9,6 @@ public class Rooms {
     private String name;
     private int id;
     private String token;
-    private String admin;
     private String stream;
 
 
@@ -18,9 +17,6 @@ public class Rooms {
         id = i;
         /* name for room set */
         name = n;
-
-        /* admin set */
-        admin = a;
 
         /* stream url */
         stream = s;
