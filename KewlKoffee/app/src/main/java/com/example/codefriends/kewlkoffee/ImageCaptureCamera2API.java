@@ -3,6 +3,7 @@ package com.example.codefriends.kewlkoffee;
 
 
 import android.Manifest;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -25,6 +26,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
@@ -60,6 +62,8 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
     private Button takePictureButton;
     private TextureView textureView;
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
+    Context context = this;
+    // android:onClick="notify"/>
 
     //kveikja á "streymi"
     private boolean stream = false;
@@ -398,5 +402,22 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
             }
         }, 5000);
     }
+
+    /*public void notify (View view) {
+        String t1 = "test";
+        String t2 = "lorem ipsum notifacatus";
+        NotificationCompat.Builder b = new NotificationCompat.Builder(this.context);
+        b.setAutoCancel(true)
+                .setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setWhen(System.currentTimeMillis())
+                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setTicker("{your tiny message}")
+                .setContentTitle(t1)
+                .setContentText(t2)
+                .setContentInfo("INFO");
+
+        NotificationManager nm = (NotificationManager) this.context.getSystemService(Context.NOTIFICATION_SERVICE);
+        nm.notify(1, b.build());
+    }*/
 
 }

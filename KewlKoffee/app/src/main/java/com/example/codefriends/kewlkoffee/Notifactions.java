@@ -60,5 +60,5 @@ public class Notifactions {
             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
             notificationManager.createNotificationChannel(channel);
         }*/
-    }
+
 }

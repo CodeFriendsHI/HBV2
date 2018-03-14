@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,8 +35,6 @@ public class StreamActivity extends AppCompatActivity {
 
     String streamUrl = r.getStream();
     String imageUrl;
-
-    Context context = this;
 
 
 
@@ -81,22 +80,6 @@ public class StreamActivity extends AppCompatActivity {
         btnPlayPause = findViewById(R.id.btn_play_pause);
         btnPlayPause.setOnClickListener(view -> Picasso.with(getApplicationContext()).load(imageUrl).into(imageView));
 
-    }
-
-    public void notify (String title, String text) {
-
-        NotificationCompat.Builder b = new NotificationCompat.Builder(this.context);
-        b.setAutoCancel(true)
-                .setDefaults(NotificationCompat.DEFAULT_ALL)
-                .setWhen(System.currentTimeMillis())
-                .setSmallIcon(R.drawable.ic_launcher_background)
-                .setTicker("{your tiny message}")
-                .setContentTitle(title)
-                .setContentText(text)
-                .setContentInfo("INFO");
-
-        NotificationManager nm = (NotificationManager) this.context.getSystemService(Context.NOTIFICATION_SERVICE);
-        nm.notify(1, b.build());
     }
 
 }
