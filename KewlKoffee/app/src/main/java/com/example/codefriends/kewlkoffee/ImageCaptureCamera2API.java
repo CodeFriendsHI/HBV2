@@ -50,6 +50,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Created by Daníel Guðnason on //.
+ */
+
 
 public class ImageCaptureCamera2API extends AppCompatActivity {
     private static final String TAG = "ImageCaptureCamera2API";
