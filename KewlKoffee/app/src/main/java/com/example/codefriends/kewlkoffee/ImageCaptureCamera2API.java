@@ -106,9 +106,7 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
             @Override
           public void onClick(View v) {
               stream = !stream;
-                //System.out.println("Should take picture onclick");
-                System.out.println("fyrsta lína 110");
-                //notifytest(v);
+                //System.out.println("Should take picture onclick")
                 takePicture();
 
           }
@@ -406,41 +404,6 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
         }, 5000);
     }
 
-    public void notifytest (View view) {
-       System.out.println("ping ping ping ping ping ping ping ping ping pingpin ping ping");
-        /*String t1 = "test";
-        String t2 = "lorem ipsum notifacatus";
-        NotificationCompat.Builder b = new NotificationCompat.Builder(this.context);
-        b.setAutoCancel(true)
-                .setDefaults(NotificationCompat.DEFAULT_ALL)
-                .setWhen(System.currentTimeMillis())
-                .setSmallIcon(R.drawable.ic_launcher_background)
-                .setTicker("{your tiny message}")
-                .setContentTitle(t1)
-                .setContentText(t2)
-                .setContentInfo("INFO");
 
-        NotificationManager nm = (NotificationManager) this.context.getSystemService(Context.NOTIFICATION_SERVICE);
-        nm.notify(1, b.build());
-        */
-
-        NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_launcher_background)
-                        .setContentTitle("My notification")
-                        .setContentText("Hello World!");
-
-
-        // Gets an instance of the NotificationManager service//
-
-        NotificationManager mNotificationManager =
-
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-
-        mNotificationManager.notify(001, mBuilder.build());
-
-        System.out.println("ending edning eidnign eindieng eidneign edinigne eidnieng");
-    }
 
 }
