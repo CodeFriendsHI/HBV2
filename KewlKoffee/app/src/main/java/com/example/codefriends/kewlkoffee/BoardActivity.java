@@ -1,9 +1,14 @@
 package com.example.codefriends.kewlkoffee;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,8 +29,10 @@ public class BoardActivity extends AppCompatActivity {
 
     private Button switchButton;
     private Button cameraButton;
+    private Button notifactionButton;
     private RoomsControl room;
     private Button[] boards = new Button[20];
+    Context context = this;
 
     public static Intent newIntent (Context packageContext) {
         Intent intent = new Intent(packageContext, StreamActivity.class);
@@ -94,5 +101,60 @@ public class BoardActivity extends AppCompatActivity {
                 // Starting an activity and hoping to get result
                 startActivityForResult(intent, 0);
             }});
+
+        notifactionButton = findViewById(R.id.buttonNotify);
+        notifactionButton.setOnClickListener (new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                notifytest();
+            }});
+    }
+
+    public void notifytest () {
+        System.out.println("ping ping ping ping ping ping ping ping ping pingpin ping ping");
+        //TODO:
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.ic_launcher_background)
+                        .setContentTitle("Notifications Example")
+                        .setContentText("This is a test notification");
+
+        Intent notificationIntent = new Intent(this, BoardActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(contentIntent);
+
+        // Add as notification
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.notify(0, builder.build());
+        System.out.println(manager);
+        System.out.println("check");
+        /*NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.ic_launcher_background)
+                        .setContentTitle("Notifications Example")
+                        .setContentText("This is a test notification");
+
+        //Intent notificationIntent = new Intent(this, MainA.class);
+        //PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
+        //        PendingIntent.FLAG_UPDATE_CURRENT);
+        //builder.setContentIntent(contentIntent);
+
+        // Add as notification
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.notify(1, builder.build());
+
+/*
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setContentTitle("My notification")
+                .setContentText("Hello World!");
+
+
+        NotificationManager mNotificationManager =
+
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        mNotificationManager.notify(001, mBuilder.build());*/
     }
 }
