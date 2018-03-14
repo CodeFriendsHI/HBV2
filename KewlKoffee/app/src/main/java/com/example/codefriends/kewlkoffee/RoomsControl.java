@@ -60,8 +60,8 @@ public class RoomsControl {
      *
      */
 
-    public void createRoom(){
-
+    public void createRoom(String name, String admin, String url){
+        rooms.add(new Rooms(rooms.size() + 1, name, admin, url));
     }
 
     /**
