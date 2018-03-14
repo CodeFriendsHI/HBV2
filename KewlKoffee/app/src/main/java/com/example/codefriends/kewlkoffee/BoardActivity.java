@@ -30,12 +30,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-<<<<<<< HEAD
-
-=======
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
->>>>>>> parent of 7d939ec...  basic notifaction virkni
 
 public class BoardActivity extends AppCompatActivity {
 
@@ -77,34 +71,34 @@ public class BoardActivity extends AppCompatActivity {
 
 
         LinearLayout layout = (LinearLayout) findViewById(R.id.layout);
-            TextView textView = new TextView(this);
-            textView.setText("Board of streams");
-            textView.setTextSize(24);
-            textView.setGravity(Gravity.CENTER);
-            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.FILL_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            );
+        TextView textView = new TextView(this);
+        textView.setText("Board of streams");
+        textView.setTextSize(24);
+        textView.setGravity(Gravity.CENTER);
+        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.FILL_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
 
-            layout.addView(textView, p);
+        layout.addView(textView, p);
 
-            for(int i = 0; i < 5;i++){
-                Button buttonItem = new Button(this);
-                buttonItem.setText("Stream " + i);
-                buttonItem.setBackgroundResource(R.drawable.ic_test);
-                int finalI = i;
-                List<Rooms> finalR = r;
-                buttonItem.setOnClickListener ((View v) -> {
-                    StreamActivity.r = finalR.get(finalI);
-                    Intent intent = StreamActivity.newIntent(BoardActivity.this);
-                    startActivityForResult(intent, 0);
-                });
-                layout.addView(buttonItem, p);
-            }
+        for (int i = 0; i < 5; i++) {
+            Button buttonItem = new Button(this);
+            buttonItem.setText("Stream " + i);
+            buttonItem.setBackgroundResource(R.drawable.ic_test);
+            int finalI = i;
+            List<Rooms> finalR = r;
+            buttonItem.setOnClickListener((View v) -> {
+                StreamActivity.r = finalR.get(finalI);
+                Intent intent = StreamActivity.newIntent(BoardActivity.this);
+                startActivityForResult(intent, 0);
+            });
+            layout.addView(buttonItem, p);
+        }
 
 
         cameraButton = findViewById(R.id.button2);
-        cameraButton.setOnClickListener (new View.OnClickListener() {
+        cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start CheatActivity
@@ -113,117 +107,84 @@ public class BoardActivity extends AppCompatActivity {
                 //            startActivity(intent);
                 // Starting an activity and hoping to get result
                 startActivityForResult(intent, 0);
-            }});
+            }
+        });
 
         notifactionButton = findViewById(R.id.buttonNotify);
-        notifactionButton.setOnClickListener (new View.OnClickListener() {
+        notifactionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String tittle="Halló";
-                String subject="Geir";
-                String body="gang$sta";
 
-                NotificationManager notif=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-                Notification notify=new Notification.Builder
-                        (getApplicationContext()).setContentTitle(tittle).setContentText(body).
-                        setContentTitle(subject).setSmallIcon(R.drawable.ic_launcher_background).build();
+                createNotification("Það er til kaffi");
 
-                notify.flags |= Notification.FLAG_AUTO_CANCEL;
-                notif.notify(0, notify);
-                //notifytest();
-                //usethis();
-                //createNotification(v);
-           // }});
-    }});
-/*
-
-    public void createNotification(View view) {
-        System.out.println("ping ping ping ping ping ping ping ping ping pingpin ping ping");
-        // Prepare intent which is triggered if the
-        // notification is selected
-        Intent intent = new Intent(this, Notification.class);
-        PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intent, 0);
-
-        // Build notification
-        // Actions are just fake
-        Notification noti = new Notification.Builder(this)
-                .setContentTitle("New mail from " + "test@gmail.com")
-                .setContentText("Subject").setSmallIcon(R.drawable.ic_launcher_background)
-                .setContentIntent(pIntent)
-                .addAction(R.drawable.ic_launcher_background, "Call", pIntent)
-                .addAction(R.drawable.ic_launcher_background, "More", pIntent)
-                .addAction(R.drawable.ic_launcher_background, "And more", pIntent).build();
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        // hide the notification after its selected
-        noti.flags |= Notification.FLAG_AUTO_CANCEL;
-
-        notificationManager.notify(0, noti);
+            }
+        });
 
     }
+        private NotificationManager notifManager;
 
+    public void createNotification(String aMessage) {
+        final int NOTIFY_ID = 1002;
 
-    //IGNORE EYÐA ÁÐUR EN PUSHAÐ
+        // There are hardcoding only for show it's just strings
+        String name = "my_package_channel";
+        String id = "my_package_channel_1"; // The user-visible name of the channel.
+        String description = "my_package_first_channel"; // The user-visible description of the channel.
 
-    public void notifytest () {
-        System.out.println("ping ping ping ping ping ping ping ping ping pingpin ping ping");
-        //TODO:
-        NotificationCompat.Builder builder =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_launcher_background)
-                        .setContentTitle("Notifications Example")
-                        .setContentText("This is a test notification");
+        Intent intent;
+        PendingIntent pendingIntent;
+        NotificationCompat.Builder builder;
 
-        //Intent notificationIntent = new Intent(this, BoardActivity.class);
-        //PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
-        //        PendingIntent.FLAG_UPDATE_CURRENT);
-        //builder.setContentIntent(contentIntent);
+        if (notifManager == null) {
+            notifManager =
+                    (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        }
 
-        // Add as notification
-        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.notify(0, builder.build());
-        System.out.println(manager);
-        System.out.println("check");
-        /*NotificationCompat.Builder builder =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_launcher_background)
-                        .setContentTitle("Notifications Example")
-                        .setContentText("This is a test notification");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel mChannel = notifManager.getNotificationChannel(id);
+            if (mChannel == null) {
+                mChannel = new NotificationChannel(id, name, importance);
+                mChannel.setDescription(description);
+                mChannel.enableVibration(true);
+                mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+                notifManager.createNotificationChannel(mChannel);
+            }
+            builder = new NotificationCompat.Builder(this, id);
 
-        //Intent notificationIntent = new Intent(this, MainA.class);
-        //PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
-        //        PendingIntent.FLAG_UPDATE_CURRENT);
-        //builder.setContentIntent(contentIntent);
+            intent = new Intent(this, BoardActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
-        // Add as notification
-        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.notify(1, builder.build());
+            builder.setContentTitle(aMessage)  // required
+                    .setSmallIcon(android.R.drawable.ic_popup_reminder) // required
+                    .setContentText(this.getString(R.string.app_name))  // required
+                    .setDefaults(Notification.DEFAULT_ALL)
+                    .setAutoCancel(true)
+                    .setContentIntent(pendingIntent)
+                    .setTicker(aMessage)
+                    .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+        } else {
 
-/*
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_launcher_background)
-                .setContentTitle("My notification")
-                .setContentText("Hello World!");
+            builder = new NotificationCompat.Builder(this);
 
+            intent = new Intent(this, BoardActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
-        NotificationManager mNotificationManager =
+            builder.setContentTitle(aMessage)                           // required
+                    .setSmallIcon(android.R.drawable.ic_popup_reminder) // required
+                    .setContentText(this.getString(R.string.app_name))  // required
+                    .setDefaults(Notification.DEFAULT_ALL)
+                    .setAutoCancel(true)
+                    .setContentIntent(pendingIntent)
+                    .setTicker(aMessage)
+                    .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400})
+                    .setPriority(Notification.PRIORITY_HIGH);
+        } // else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        mNotificationManager.notify(001, mBuilder.build());*/
-    }
-
-    public void usethis(){
-       String tittle="Halló";
-            String subject="Geir";
-            String body="gang$sta";
-
-            NotificationManager notif=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-            Notification notify=new Notification.Builder
-               (getApplicationContext()).setContentTitle(tittle).setContentText(body).
-               setContentTitle(subject).setSmallIcon(R.drawable.ic_launcher_background).build();
-
-               notify.flags |= Notification.FLAG_AUTO_CANCEL;
-               notif.notify(0, notify);
+        Notification notification = builder.build();
+        notifManager.notify(NOTIFY_ID, notification);
     }
 }
 
