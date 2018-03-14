@@ -50,7 +50,7 @@ public class StreamActivity extends AppCompatActivity {
 
 
         Handler handler = new Handler();
-        int delay = 5000; //milliseconds
+        int delay = 7000; //milliseconds
 
         handler.postDelayed(new Runnable(){
             public void run(){
@@ -72,13 +72,11 @@ public class StreamActivity extends AppCompatActivity {
                             throw new IOException("Unexpected code " + response);
                         } else {
                             imageUrl = response.body().string();
-
                         }
                     }
                 });
                 nameView.setText(r.getName());
-
-                btnPlayPause = findViewById(R.id.btn_play_pause);
+                //btnPlayPause = findViewById(R.id.btn_play_pause);
                 //btnPlayPause.setOnClickListener(view -> Picasso.with(getApplicationContext()).load(imageUrl).into(imageView));
                 imageView = findViewById(R.id.imageView);
                 Picasso.with(getApplicationContext()).load(imageUrl).into(imageView);
