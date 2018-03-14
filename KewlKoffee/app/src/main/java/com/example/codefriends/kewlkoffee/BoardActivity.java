@@ -4,22 +4,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Stream;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class BoardActivity extends AppCompatActivity {
 
@@ -58,6 +59,27 @@ public class BoardActivity extends AppCompatActivity {
 
         //System.out.print(rooms.getName());
 
+        OkHttpClient client = new OkHttpClient();
+
+
+        Request request = new Request.Builder()
+                .url("https://kewlserver.herokuapp.com/rooms")
+                .build();
+        client.newCall(request).enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(okhttp3.Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(okhttp3.Call call, final okhttp3.Response response) throws IOException {
+                if (!response.isSuccessful()) {
+                    throw new IOException("Unexpected code " + response);
+                } else {
+                    System.out.print(response.body().string());
+                }
+            }
+        });
 
         LinearLayout layout = findViewById(R.id.mainLayout);
             TextView textView = new TextView(this);
@@ -97,8 +119,21 @@ public class BoardActivity extends AppCompatActivity {
 
         newRoom = findViewById(R.id.newRoomButton);
         newRoom.setOnClickListener(v -> {
-            System.out.println(room.getRooms().size());
-            room.createRoom("name", "admin", "url");
+            Call call = RoomsControl.mRoomservice.createRoom("la", "la", "lalala");
+
+            call.enqueue(new Callback() {
+
+                @Override
+                public void onResponse(Call call, Response response) {
+                    System.out.println("yay!");
+
+                }
+
+                @Override
+                public void onFailure(Call call, Throwable t) {
+                    System.out.println("oh no!");
+                }
+            });
         });
     }
 }
