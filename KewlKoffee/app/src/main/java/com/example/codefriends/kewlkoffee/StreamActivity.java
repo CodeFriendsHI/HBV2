@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
@@ -48,37 +48,46 @@ public class StreamActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        imageView = findViewById(R.id.imageView);
         nameView = findViewById(R.id.headerView);
 
-        OkHttpClient client = new OkHttpClient();
+
+        Handler handler = new Handler();
+        int delay = 7000; //milliseconds
+
+        handler.postDelayed(new Runnable(){
+            public void run(){
+                OkHttpClient client = new OkHttpClient();
 
 
-        Request request = new Request.Builder()
-                .url(streamUrl)
-                .build();
+                Request request = new Request.Builder()
+                        .url(streamUrl)
+                        .build();
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        e.printStackTrace();
+                    }
 
-
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
+                    @Override
+                    public void onResponse(Call call, final Response response) throws IOException {
+                        if (!response.isSuccessful()) {
+                            throw new IOException("Unexpected code " + response);
+                        } else {
+                            imageUrl = response.body().string();
+                        }
+                    }
+                });
+                nameView.setText(r.getName());
+                //btnPlayPause = findViewById(R.id.btn_play_pause);
+                //btnPlayPause.setOnClickListener(view -> Picasso.with(getApplicationContext()).load(imageUrl).into(imageView));
+                imageView = findViewById(R.id.imageView);
+                Picasso.with(getApplicationContext()).load(imageUrl).into(imageView);
+                handler.postDelayed(this, delay);
             }
+        }, delay);
 
-            @Override
-            public void onResponse(Call call, final Response response) throws IOException {
-                if (!response.isSuccessful()) {
-                    throw new IOException("Unexpected code " + response);
-                } else {
-                    imageUrl = response.body().string();
-                }
-            }
-        });
 
-        nameView.setText(r.getName());
 
-        btnPlayPause = findViewById(R.id.btn_play_pause);
-        btnPlayPause.setOnClickListener(view -> Picasso.with(getApplicationContext()).load(imageUrl).into(imageView));
 
     }
 
