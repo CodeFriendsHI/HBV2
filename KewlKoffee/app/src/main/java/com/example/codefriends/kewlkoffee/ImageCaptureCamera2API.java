@@ -108,6 +108,7 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
               stream = !stream;
                 //System.out.println("Should take picture onclick");
               takePicture();
+              //notifytest(v);
           }
         });
 
@@ -403,7 +404,7 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
         }, 5000);
     }
 
-    /*public void notify (View view) {
+    public void notifytest (View view) {
         String t1 = "test";
         String t2 = "lorem ipsum notifacatus";
         NotificationCompat.Builder b = new NotificationCompat.Builder(this.context);
@@ -418,6 +419,6 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
 
         NotificationManager nm = (NotificationManager) this.context.getSystemService(Context.NOTIFICATION_SERVICE);
         nm.notify(1, b.build());
-    }*/
+    }
 
 }
