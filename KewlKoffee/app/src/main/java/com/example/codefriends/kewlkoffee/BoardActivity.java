@@ -1,8 +1,6 @@
 package com.example.codefriends.kewlkoffee;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
+import android.app.*;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -23,6 +21,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
+
+import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBar;
 
 public class BoardActivity extends AppCompatActivity {
 
@@ -106,9 +115,50 @@ public class BoardActivity extends AppCompatActivity {
         notifactionButton.setOnClickListener (new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                notifytest();
-            }});
+                String tittle="Halló";
+                String subject="Geir";
+                String body="gang$sta";
+
+                NotificationManager notif=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+                Notification notify=new Notification.Builder
+                        (getApplicationContext()).setContentTitle(tittle).setContentText(body).
+                        setContentTitle(subject).setSmallIcon(R.drawable.ic_launcher_background).build();
+
+                notify.flags |= Notification.FLAG_AUTO_CANCEL;
+                notif.notify(0, notify);
+                //notifytest();
+                //usethis();
+                //createNotification(v);
+           // }});
+    }});
+/*
+
+    public void createNotification(View view) {
+        System.out.println("ping ping ping ping ping ping ping ping ping pingpin ping ping");
+        // Prepare intent which is triggered if the
+        // notification is selected
+        Intent intent = new Intent(this, Notification.class);
+        PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intent, 0);
+
+        // Build notification
+        // Actions are just fake
+        Notification noti = new Notification.Builder(this)
+                .setContentTitle("New mail from " + "test@gmail.com")
+                .setContentText("Subject").setSmallIcon(R.drawable.ic_launcher_background)
+                .setContentIntent(pIntent)
+                .addAction(R.drawable.ic_launcher_background, "Call", pIntent)
+                .addAction(R.drawable.ic_launcher_background, "More", pIntent)
+                .addAction(R.drawable.ic_launcher_background, "And more", pIntent).build();
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        // hide the notification after its selected
+        noti.flags |= Notification.FLAG_AUTO_CANCEL;
+
+        notificationManager.notify(0, noti);
+
     }
+
+
+    //IGNORE EYÐA ÁÐUR EN PUSHAÐ
 
     public void notifytest () {
         System.out.println("ping ping ping ping ping ping ping ping ping pingpin ping ping");
@@ -119,10 +169,10 @@ public class BoardActivity extends AppCompatActivity {
                         .setContentTitle("Notifications Example")
                         .setContentText("This is a test notification");
 
-        Intent notificationIntent = new Intent(this, BoardActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.setContentIntent(contentIntent);
+        //Intent notificationIntent = new Intent(this, BoardActivity.class);
+        //PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
+        //        PendingIntent.FLAG_UPDATE_CURRENT);
+        //builder.setContentIntent(contentIntent);
 
         // Add as notification
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -157,4 +207,19 @@ public class BoardActivity extends AppCompatActivity {
 
         mNotificationManager.notify(001, mBuilder.build());*/
     }
+
+    public void usethis(){
+       String tittle="Halló";
+            String subject="Geir";
+            String body="gang$sta";
+
+            NotificationManager notif=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+            Notification notify=new Notification.Builder
+               (getApplicationContext()).setContentTitle(tittle).setContentText(body).
+               setContentTitle(subject).setSmallIcon(R.drawable.ic_launcher_background).build();
+
+               notify.flags |= Notification.FLAG_AUTO_CANCEL;
+               notif.notify(0, notify);
+    }
 }
+
