@@ -119,21 +119,27 @@ public class BoardActivity extends AppCompatActivity {
 
         newRoom = findViewById(R.id.newRoomButton);
         newRoom.setOnClickListener(v -> {
-            Call call = RoomsControl.mRoomservice.createRoom("la", "la", "lalala");
 
-            call.enqueue(new Callback() {
 
-                @Override
-                public void onResponse(Call call, Response response) {
-                    System.out.println("yay!");
+            Intent intent = NewRoomActivity.newIntent(BoardActivity.this);
+            startActivity(intent);
 
-                }
 
-                @Override
-                public void onFailure(Call call, Throwable t) {
-                    System.out.println("oh no!");
-                }
-            });
+//            Call call = RoomsControl.mRoomservice.createRoom("la", "la", "lalala");
+//
+//            call.enqueue(new Callback() {
+//
+//                @Override
+//                public void onResponse(Call call, Response response) {
+//                    System.out.println("yay!");
+//
+//                }
+//
+//                @Override
+//                public void onFailure(Call call, Throwable t) {
+//                    System.out.println("oh no!");
+//                }
+//            });
         });
     }
 }
