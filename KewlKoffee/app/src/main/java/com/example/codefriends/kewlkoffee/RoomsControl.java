@@ -20,8 +20,12 @@ import retrofit2.Response;
 
 
 /**
- * Created by adalsteinn95 on 18.2.2018.
- */
+* Roomscontrol manages the rooms 
+*
+* @author  Aðalsteinn Ingi Pálsson
+* @version 0.01
+* @since   18.2.2018 
+*/
 
 public class RoomsControl {
 
@@ -47,31 +51,41 @@ public class RoomsControl {
     /**
      *
      * get all the rooms via server
+     * 
+     * @return List of rooms
      *
      */
     public List<Rooms> getRooms(){
-
         return rooms;
     }
 
     /**
      *
-     * createRooms
+     * Add a stream
+     * 
+     * @param name - name of the stream
+     * @param Admin - name of the owner
+     * @param stream - streamUrl  
      *
      */
 
-    public void createRoom(){
+    public void createRoom(String name, String admin, String stream){
 
+        rooms.add(new Rooms(name,admin,stream));
     }
 
     /**
      *
      * Find rooms
+     * 
+     * @param search - search string
+     * 
+     * @return List of rooms
      *
      */
 
     @android.support.annotation.RequiresApi(api = Build.VERSION_CODES.N)
-    public Optional<Rooms> findRooms(List<Rooms> rooms, final String search){
+    public Optional<Rooms> findRooms(final String search){
         return rooms.stream()
                 .filter(i -> i.getName().equals(search)).findAny();
     }

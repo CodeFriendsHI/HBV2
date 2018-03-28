@@ -31,6 +31,12 @@ import android.os.Bundle;
 import android.view.View;
 
 
+
+/**
+ * Created by adalsteinn95 on 18.2.2018.
+ */
+
+
 public class BoardActivity extends AppCompatActivity {
 
 
