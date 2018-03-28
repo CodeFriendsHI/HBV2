@@ -18,9 +18,14 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 
+
 /**
- * Created by fannargudmundsson on 22/02/2018.
- */
+* ImageService
+*
+* @author  Fannar Guðmundsson
+* @version 0.01
+* @since   22.2.2018 
+*/
 
 public interface imageService{
 

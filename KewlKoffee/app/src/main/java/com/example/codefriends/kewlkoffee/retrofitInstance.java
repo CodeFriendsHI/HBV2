@@ -1,13 +1,14 @@
 package com.example.codefriends.kewlkoffee;
-
-/**
- * Created by fannargudmundsson on 22/02/2018.
- */
-
 import android.content.Context;
-
 import retrofit2.Retrofit;
 
+/**
+* RetroFit er kewl
+*
+* @author  Fannar Guðmundsson
+* @version 0.01
+* @since   22.2.2018 
+*/
 
 public class retrofitInstance {
     private static Retrofit retrofit;

@@ -9,9 +9,12 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 /**
- * Created by adalsteinn95 on 13.3.2018.
- */
-
+* Roomservice 
+*
+* @author  Aðalsteinn Ingi Pálsson
+* @version 0.01
+* @since   13.3.2018 
+*/
 public interface RoomService {
 
 
