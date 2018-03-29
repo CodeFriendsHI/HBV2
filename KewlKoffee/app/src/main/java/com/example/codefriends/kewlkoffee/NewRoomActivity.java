@@ -60,9 +60,9 @@ public class NewRoomActivity extends AppCompatActivity {
 
         submitButton = findViewById(R.id.submit);
         submitButton.setOnClickListener(v -> {
-            if (streamName != "" && token != "") {
-                System.out.println("=======YAY=======");
+            if (!streamName.isEmpty() && !token.isEmpty()) {
                 System.out.println(streamName);
+                System.out.println(token);
             }
         });
     }

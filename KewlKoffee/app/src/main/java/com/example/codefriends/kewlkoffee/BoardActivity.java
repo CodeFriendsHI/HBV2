@@ -125,21 +125,21 @@ public class BoardActivity extends AppCompatActivity {
             startActivity(intent);
 
 
-//            Call call = RoomsControl.mRoomservice.createRoom("la", "la", "lalala");
-//
-//            call.enqueue(new Callback() {
-//
-//                @Override
-//                public void onResponse(Call call, Response response) {
-//                    System.out.println("yay!");
-//
-//                }
-//
-//                @Override
-//                public void onFailure(Call call, Throwable t) {
-//                    System.out.println("oh no!");
-//                }
-//            });
+            Call call = RoomsControl.mRoomservice.createRoom("la", "la", "lalala");
+
+            call.enqueue(new Callback() {
+
+                @Override
+                public void onResponse(Call call, Response response) {
+                    System.out.println("yay!");
+
+                }
+
+                @Override
+                public void onFailure(Call call, Throwable t) {
+                    System.out.println("oh no!");
+                }
+            });
         });
     }
 }
