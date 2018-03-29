@@ -95,7 +95,7 @@ public class BoardActivity extends AppCompatActivity {
             }
         });
 
-        LinearLayout layout = (LinearLayout) findViewById(R.id.layout);
+        LinearLayout layout = findViewById(R.id.mainLayout);
         TextView textView = new TextView(this);
         textView.setText("Board of streams");
         textView.setTextSize(24);
@@ -155,6 +155,9 @@ public class BoardActivity extends AppCompatActivity {
                 }
             });
         });
+
+
+
         notifactionButton = findViewById(R.id.buttonNotify);
         notifactionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,7 +169,8 @@ public class BoardActivity extends AppCompatActivity {
         });
 
     }
-        private NotificationManager notifManager;
+
+    private NotificationManager notifManager;
 
     public void createNotification(String aMessage) {
         final int NOTIFY_ID = 1002;
