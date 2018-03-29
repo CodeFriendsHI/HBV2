@@ -19,10 +19,18 @@
             tools:layout_editor_absoluteY="25dp">
 
             <Button
+                android:id="@+id/buttonNotify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Do it!"
+                />
+            <Button
                 android:id="@+id/button2"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:text="Camera" />
+
+
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
