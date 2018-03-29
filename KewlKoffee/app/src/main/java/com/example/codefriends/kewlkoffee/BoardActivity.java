@@ -31,6 +31,15 @@ import android.os.Bundle;
 import android.view.View;
 
 
+
+/**
+* Roomservice 
+*
+* @author  Aðalsteinn Ingi Pálsson
+* @version 0.01
+* @since   18.2.2018 
+*/
+
 public class BoardActivity extends AppCompatActivity {
 
 
