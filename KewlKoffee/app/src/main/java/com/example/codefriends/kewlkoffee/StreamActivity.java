@@ -18,9 +18,13 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-/**
- * Edited 13/3 by Geir Gardarsson
- */
+ /**
+* StreamActivity
+*
+* @author  Aðalsteinn Ingi Pálsson and Geir Gardarson
+* @version 0.02
+* @since   18.2.2018 
+*/
 
 public class StreamActivity extends AppCompatActivity {
 

@@ -4,8 +4,12 @@ import android.os.Bundle;
 import android.app.Activity;
 
 /**
- * Created by dag on 14/03/2018.
- */
+* Notification 
+*
+* @author  Daniel Gudnason
+* @version 0.01
+* @since   14.3.2018 
+*/
 
 public class Notification extends Activity {
     @Override

@@ -10,8 +10,12 @@ import retrofit2.Retrofit;
 
 
 /**
- * Created by adalsteinn95 on 18.2.2018.
- */
+* Roomscontrol manages the rooms 
+*
+* @author  Aðalsteinn Ingi Pálsson
+* @version 0.01
+* @since   18.2.2018 
+*/
 
 public class RoomsControl {
 
@@ -37,6 +41,8 @@ public class RoomsControl {
     /**
      *
      * get all the rooms via server
+     * 
+     * @return List of rooms
      *
      */
     public List<Room> getRooms(){
@@ -46,7 +52,11 @@ public class RoomsControl {
 
     /**
      *
-     * createRooms
+     * Add a stream
+     * 
+     * @param name - name of the stream
+     * @param Admin - name of the owner
+     * @param stream - streamUrl  
      *
      */
 
@@ -57,6 +67,10 @@ public class RoomsControl {
     /**
      *
      * Find rooms
+     * 
+     * @param search - search string
+     * 
+     * @return List of rooms
      *
      */
 

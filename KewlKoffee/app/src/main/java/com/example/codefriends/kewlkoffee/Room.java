@@ -1,10 +1,12 @@
 package com.example.codefriends.kewlkoffee;
 
 /**
- * Created by adalsteinn95 on 18.2.2018.
- *
- * Edited by geirgardarsson on 3.4.2018
- */
+* Room object
+*
+* @author  Aðalsteinn Ingi Pálsson
+* @version 0.01
+* @since   18.2.2018 
+*/
 
 public class Room {
 
