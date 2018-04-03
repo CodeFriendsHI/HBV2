@@ -71,7 +71,8 @@ public class RoomsControl {
 
     public void createRoom(String name, String admin, String stream){
 
-        rooms.add(new Rooms(name,admin,stream));
+        //harðkoðað i TODO: laga
+        rooms.add(new Rooms(1,name,admin,stream));
     }
 
     /**
