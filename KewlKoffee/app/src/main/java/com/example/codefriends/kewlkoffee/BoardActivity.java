@@ -37,6 +37,7 @@ public class BoardActivity extends AppCompatActivity {
     private Button[] boards = new Button[20];
     Context context = this;
     private int NEW_ROOM_CODE = 1;
+    private int STREAM_START_CODE = 2;
 
     public static Intent newIntent (Context packageContext) {
         Intent intent = new Intent(packageContext, StreamActivity.class);
@@ -149,8 +150,10 @@ public class BoardActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == NEW_ROOM_CODE) {
             if (resultCode == RESULT_OK) {
-                System.out.println("yay");
-                System.out.println(data.getExtras().getInt("roomId"));
+                int newRoomId = data.getExtras().getInt("roomId");
+                Intent streamStart = ImageCaptureCamera2API.newIntent(BoardActivity.this);
+                streamStart.putExtra("roomId", newRoomId);
+                startActivityForResult(streamStart,STREAM_START_CODE);
             }
         }
     }

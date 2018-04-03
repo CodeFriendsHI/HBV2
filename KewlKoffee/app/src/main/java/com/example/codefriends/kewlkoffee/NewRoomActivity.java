@@ -80,7 +80,7 @@ public class NewRoomActivity extends AppCompatActivity {
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         System.out.println("=================PRINTING RESPONSE===================");
                         try {
-                            Integer newRoomId = Integer.parseInt(response.body().string());
+                            int newRoomId = Integer.parseInt(response.body().string());
 
                             Intent data = new Intent();
                             String text = "Adding room";

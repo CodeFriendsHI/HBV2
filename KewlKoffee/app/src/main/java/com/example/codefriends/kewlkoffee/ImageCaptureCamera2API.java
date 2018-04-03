@@ -85,6 +85,7 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
     private Handler mBackgroundHandler;
     private HandlerThread mBackgroundThread;
     private imageService mImageService;
+    private int roomId;
 
     public static Intent newIntent (Context packageContext) {
         Intent intent = new Intent(packageContext, ImageCaptureCamera2API.class);
@@ -95,25 +96,21 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_capture_camera2_api);
-        textureView = (TextureView) findViewById(R.id.texture);
+        textureView = findViewById(R.id.texture);
         assert textureView != null;
         textureView.setSurfaceTextureListener(textureListener);
-        takePictureButton = (Button) findViewById(R.id.btn_takepicture);
+        takePictureButton = findViewById(R.id.btn_takepicture);
         assert takePictureButton != null;
         mImageService = retrofitInstance.getRetroInstance(getApplicationContext()).create(imageService.class);
-        takePictureButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-          public void onClick(View v) {
-              stream = !stream;
-                //System.out.println("Should take picture onclick");
-                System.out.println("fyrsta lína 110");
-                //notifytest(v);
-                takePicture();
-
-          }
+        takePictureButton.setOnClickListener(v -> {
+            stream = !stream;
+            takePicture();
         });
 
+        int id = getIntent().getExtras().getInt("roomId");
+        this.roomId = id;
     }
+
     TextureView.SurfaceTextureListener textureListener = new TextureView.SurfaceTextureListener() {
         @Override
         public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
@@ -197,7 +194,7 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
             ImageReader.OnImageAvailableListener readerListener = new ImageReader.OnImageAvailableListener() {
                 @Override
                 public void onImageAvailable(ImageReader reader) {
-                    Image image = null;
+                    Image image;
                         image = reader.acquireLatestImage();
                         ByteBuffer buffer = image.getPlanes()[0].getBuffer();
                         byte[] bytes = new byte[buffer.capacity()];
@@ -205,7 +202,7 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
 
 
                         String base = Base64.encodeToString(bytes, Base64.DEFAULT);
-                        Call call = mImageService.postImage(base);
+                        Call call = mImageService.postImage(base, roomId);
 
                         call.enqueue(new Callback() {
 
