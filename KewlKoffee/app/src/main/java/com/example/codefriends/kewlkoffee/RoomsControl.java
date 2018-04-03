@@ -55,8 +55,8 @@ public class RoomsControl {
      * Add a stream
      * 
      * @param name - name of the stream
-     * @param Admin - name of the owner
-     * @param stream - streamUrl  
+     * @param admin - name of the owner
+     * @param url - streamUrl
      *
      */
 
