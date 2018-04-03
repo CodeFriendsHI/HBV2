@@ -2,16 +2,25 @@ package com.example.codefriends.kewlkoffee;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import java.io.IOException;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+/**
+ * @author geirgardarsson
+ *
+ * Last updated by geirgardarsson on 3.4.2018
+ */
 
 public class NewRoomActivity extends AppCompatActivity {
 
@@ -59,10 +68,40 @@ public class NewRoomActivity extends AppCompatActivity {
         });
 
         submitButton = findViewById(R.id.submit);
-        submitButton.setOnClickListener(v -> {
-            if (!streamName.isEmpty() && !token.isEmpty()) {
+        submitButton.setOnClickListener((View v) -> {
+            if (!streamName.isEmpty()) {
                 System.out.println(streamName);
                 System.out.println(token);
+
+                Call call = RoomsControl.mRoomservice.createRoom(streamName, "stream", token);
+
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        System.out.println("=================PRINTING RESPONSE===================");
+                        try {
+                            Integer newRoomId = Integer.parseInt(response.body().string());
+
+                            Intent data = new Intent();
+                            String text = "Adding room";
+
+                            data.putExtra("roomId", newRoomId);
+
+                            data.setData(Uri.parse(text));
+                            setResult(RESULT_OK, data);
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(Call call, Throwable t) {
+
+                    }
+                });
             }
         });
     }

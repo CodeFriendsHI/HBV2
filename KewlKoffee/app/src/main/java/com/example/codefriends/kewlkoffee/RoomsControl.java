@@ -1,22 +1,12 @@
 package com.example.codefriends.kewlkoffee;
 
-import android.annotation.TargetApi;
 import android.os.Build;
-import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.view.TextureView;
-import android.view.View;
-import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 /**
@@ -25,7 +15,7 @@ import retrofit2.Response;
 
 public class RoomsControl {
 
-    public List<Rooms> rooms = new ArrayList<>(20);
+    public List<Room> rooms = new ArrayList<>(20);
 
     public static RoomService mRoomservice;
 
@@ -36,7 +26,7 @@ public class RoomsControl {
     public RoomsControl(){
 
         for (int i = 0; i < 5;i++) {
-            rooms.add(new Rooms(i, "Stream " + i, "lala", "https://kewlserver.herokuapp.com/streams/" + i));
+            rooms.add(new Room(i, "Stream " + i, "https://kewlserver.herokuapp.com/streams/" + i, "lala"));
         }
 
         retrofit = retrofitInstance.getClient("https:/kewlserver.herokuapp.com/");
@@ -49,7 +39,7 @@ public class RoomsControl {
      * get all the rooms via server
      *
      */
-    public List<Rooms> getRooms(){
+    public List<Room> getRooms(){
 
         return rooms;
     }
@@ -61,7 +51,7 @@ public class RoomsControl {
      */
 
     public void createRoom(String name, String admin, String url){
-        this.rooms.add(new Rooms(rooms.size() + 1, name, admin, url));
+        this.rooms.add(new Room(rooms.size() + 1, name, admin, url));
     }
 
     /**
@@ -71,7 +61,7 @@ public class RoomsControl {
      */
 
     @android.support.annotation.RequiresApi(api = Build.VERSION_CODES.N)
-    public Optional<Rooms> findRooms(List<Rooms> rooms, final String search){
+    public Optional<Room> findRooms(List<Room> rooms, final String search){
         return rooms.stream()
                 .filter(i -> i.getName().equals(search)).findAny();
     }

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -20,18 +19,11 @@ import java.util.List;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
-import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
 
 
 public class BoardActivity extends AppCompatActivity {
@@ -44,6 +36,7 @@ public class BoardActivity extends AppCompatActivity {
     private RoomsControl room;
     private Button[] boards = new Button[20];
     Context context = this;
+    private int NEW_ROOM_CODE = 1;
 
     public static Intent newIntent (Context packageContext) {
         Intent intent = new Intent(packageContext, StreamActivity.class);
@@ -65,11 +58,11 @@ public class BoardActivity extends AppCompatActivity {
 
         room = new RoomsControl();
 
-        List<Rooms> r;
+        List<Room> r;
         r = room.getRooms();
 
-        //Optional<Rooms> test = room.findRooms(r ,"lala");
-        //final Rooms rooms = test.get();
+        //Optional<Room> test = room.findRooms(r ,"lala");
+        //final Room rooms = test.get();
 
         //System.out.print(rooms.getName());
 
@@ -90,7 +83,7 @@ public class BoardActivity extends AppCompatActivity {
                 if (!response.isSuccessful()) {
                     throw new IOException("Unexpected code " + response);
                 } else {
-                    System.out.print(response.body().string());
+                    //System.out.println(response.body().string());
                 }
             }
         });
@@ -112,7 +105,7 @@ public class BoardActivity extends AppCompatActivity {
             buttonItem.setText("Stream " + i);
             buttonItem.setBackgroundResource(R.drawable.ic_test);
             int finalI = i;
-            List<Rooms> finalR = r;
+            List<Room> finalR = r;
             buttonItem.setOnClickListener((View v) -> {
                 StreamActivity.r = finalR.get(finalI);
                 Intent intent = StreamActivity.newIntent(BoardActivity.this);
@@ -133,27 +126,8 @@ public class BoardActivity extends AppCompatActivity {
 
         newRoom = findViewById(R.id.newRoomButton);
         newRoom.setOnClickListener(v -> {
-
-
             Intent intent = NewRoomActivity.newIntent(BoardActivity.this);
-            startActivity(intent);
-
-
-            Call call = RoomsControl.mRoomservice.createRoom("la", "la", "lalala");
-
-            call.enqueue(new Callback() {
-
-                @Override
-                public void onResponse(Call call, Response response) {
-                    System.out.println("yay!");
-
-                }
-
-                @Override
-                public void onFailure(Call call, Throwable t) {
-                    System.out.println("oh no!");
-                }
-            });
+            startActivityForResult(intent, NEW_ROOM_CODE);
         });
 
 
@@ -169,6 +143,18 @@ public class BoardActivity extends AppCompatActivity {
         });
 
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == NEW_ROOM_CODE) {
+            if (resultCode == RESULT_OK) {
+                System.out.println("yay");
+                System.out.println(data.getExtras().getInt("roomId"));
+            }
+        }
+    }
+
 
     private NotificationManager notifManager;
 
