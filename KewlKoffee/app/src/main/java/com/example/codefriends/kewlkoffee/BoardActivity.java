@@ -6,29 +6,24 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Stream;
 
-import android.app.Activity;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
 
 
 
@@ -45,10 +40,13 @@ public class BoardActivity extends AppCompatActivity {
 
     private Button switchButton;
     private Button cameraButton;
+    private Button newRoom;
     private Button notifactionButton;
     private RoomsControl room;
     private Button[] boards = new Button[20];
     Context context = this;
+    private int NEW_ROOM_CODE = 1;
+    private int STREAM_START_CODE = 2;
 
     public static Intent newIntent (Context packageContext) {
         Intent intent = new Intent(packageContext, StreamActivity.class);
@@ -70,16 +68,37 @@ public class BoardActivity extends AppCompatActivity {
 
         room = new RoomsControl();
 
-        List<Rooms> r;
+        List<Room> r;
         r = room.getRooms();
 
-        //Optional<Rooms> test = room.findRooms(r ,"lala");
-        //final Rooms rooms = test.get();
+        //Optional<Room> test = room.findRooms(r ,"lala");
+        //final Room rooms = test.get();
 
         //System.out.print(rooms.getName());
 
+        OkHttpClient client = new OkHttpClient();
 
-        LinearLayout layout = (LinearLayout) findViewById(R.id.layout);
+
+        Request request = new Request.Builder()
+                .url("https://kewlserver.herokuapp.com/rooms")
+                .build();
+        client.newCall(request).enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(okhttp3.Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(okhttp3.Call call, final okhttp3.Response response) throws IOException {
+                if (!response.isSuccessful()) {
+                    throw new IOException("Unexpected code " + response);
+                } else {
+                    //System.out.println(response.body().string());
+                }
+            }
+        });
+
+        LinearLayout layout = findViewById(R.id.mainLayout);
         TextView textView = new TextView(this);
         textView.setText("Board of streams");
         textView.setTextSize(24);
@@ -96,7 +115,7 @@ public class BoardActivity extends AppCompatActivity {
             buttonItem.setText("Stream " + i);
             buttonItem.setBackgroundResource(R.drawable.ic_test);
             int finalI = i;
-            List<Rooms> finalR = r;
+            List<Room> finalR = r;
             buttonItem.setOnClickListener((View v) -> {
                 StreamActivity.r = finalR.get(finalI);
                 Intent intent = StreamActivity.newIntent(BoardActivity.this);
@@ -105,19 +124,23 @@ public class BoardActivity extends AppCompatActivity {
             layout.addView(buttonItem, p);
         }
 
-
         cameraButton = findViewById(R.id.button2);
-        cameraButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start CheatActivity
-                //   Intent intent = new Intent(QuizActivity.this, CheatActivity.class);
-                Intent intent = ImageCaptureCamera2API.newIntent(BoardActivity.this);
-                //            startActivity(intent);
-                // Starting an activity and hoping to get result
-                startActivityForResult(intent, 0);
-            }
+        cameraButton.setOnClickListener (v -> {
+            // Start CheatActivity
+            //   Intent intent = new Intent(QuizActivity.this, CheatActivity.class);
+            Intent intent = ImageCaptureCamera2API.newIntent(BoardActivity.this);
+            //            startActivity(intent);
+            // Starting an activity and hoping to get result
+            startActivityForResult(intent, 0);
         });
+
+        newRoom = findViewById(R.id.newRoomButton);
+        newRoom.setOnClickListener(v -> {
+            Intent intent = NewRoomActivity.newIntent(BoardActivity.this);
+            startActivityForResult(intent, NEW_ROOM_CODE);
+        });
+
+
 
         notifactionButton = findViewById(R.id.buttonNotify);
         notifactionButton.setOnClickListener(new View.OnClickListener() {
@@ -130,7 +153,22 @@ public class BoardActivity extends AppCompatActivity {
         });
 
     }
-        private NotificationManager notifManager;
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == NEW_ROOM_CODE) {
+            if (resultCode == RESULT_OK) {
+                int newRoomId = data.getExtras().getInt("roomId");
+                Intent streamStart = ImageCaptureCamera2API.newIntent(BoardActivity.this);
+                streamStart.putExtra("roomId", newRoomId);
+                startActivityForResult(streamStart,STREAM_START_CODE);
+            }
+        }
+    }
+
+
+    private NotificationManager notifManager;
 
     public void createNotification(String aMessage) {
         final int NOTIFY_ID = 1002;

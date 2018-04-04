@@ -9,19 +9,30 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
-            android:id="@+id/layout"
+            android:id="@+id/mainLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="25dp">
+
             <Button
                 android:id="@+id/buttonNotify"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Do it!"
                 />
+
+            <Button
+                android:id="@+id/newRoomButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="New Room"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <Button
                 android:id="@+id/button2"
                 android:layout_width="match_parent"

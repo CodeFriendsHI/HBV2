@@ -8,30 +8,19 @@ package com.example.codefriends.kewlkoffee;
 * @since   18.2.2018 
 */
 
-public class Rooms {
+public class Room {
 
     private String name;
     private int id;
     private String token;
-    private String admin;
     private String stream;
 
 
-    public Rooms(int i, String n, String a, String s){
-        /* id set */
-        id = i;
-        /* name for room set */
-        name = n;
-
-        /* admin set */
-        admin = a;
-
-        /* stream url */
-        stream = s;
-
-        /* Token generated */
-        token = generateToken();
-
+    public Room(int id, String name, String stream, String token){
+        this.id = id;
+        this.name = name;
+        this.stream = stream;
+        this.token = token;
     }
 
     public String generateToken(){
@@ -45,6 +34,4 @@ public class Rooms {
     public String getName(){
         return name;
     }
-
-
 }
