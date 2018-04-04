@@ -9,12 +9,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
+import android.provider.SyncStateContract;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+
+import org.json.JSONObject;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
@@ -152,6 +162,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         android.app.Notification notification = builder.build();
         notifManager.notify(NOTIFY_ID, notification);
     }
+
 }
 
 /*
