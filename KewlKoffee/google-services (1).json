@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1073688764930",
+    "firebase_url": "https://kewlkoffee.firebaseio.com",
+    "project_id": "kewlkoffee",
+    "storage_bucket": "kewlkoffee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1073688764930:android:bac080f490a91736",
+        "android_client_info": {
+          "package_name": "com.example.codefriends.kewlkoffee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1073688764930-t0cpdlqmf5rgttr0ki2k0b8jd28bi590.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.codefriends.kewlkoffee",
+            "certificate_hash": "6bbbda62e75c0e117aebe31188d12583df0ceeed"
+          }
+        },
+        {
+          "client_id": "1073688764930-ksr3ivp9oc6v2pcglt2l6scs5llqm8aa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZaeudp4gbcc7U_-oI8oK4t_bgub6PeDo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1073688764930-ksr3ivp9oc6v2pcglt2l6scs5llqm8aa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
