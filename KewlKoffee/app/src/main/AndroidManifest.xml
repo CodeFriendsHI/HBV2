@@ -15,6 +15,11 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -36,10 +41,8 @@
         <activity
             android:name=".StreamActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme">
-        </activity>
-        <activity android:name=".ImageCaptureCamera2API">
-        </activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ImageCaptureCamera2API" />
         <activity android:name=".BoardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,6 +50,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".NewRoomActivity"
+            android:label="@string/title_activity_new_room"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
         <activity android:name=".Notification"
             android:label="Details of notification"
             android:parentActivityName=".BoardActivity">

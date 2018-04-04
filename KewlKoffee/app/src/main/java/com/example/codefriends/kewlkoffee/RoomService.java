@@ -1,7 +1,13 @@
 package com.example.codefriends.kewlkoffee;
 
+import org.json.JSONObject;
+
+import java.util.List;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -17,10 +23,12 @@ import retrofit2.http.Path;
 */
 public interface RoomService {
 
+    @POST("/rooms")
+    @FormUrlEncoded
+    Call<ResponseBody> createRoom(@Field("name") String name,
+                                  @Field("stream") String stream,
+                                  @Field("token") String token);
 
-
-    @GET("/streams/{id}")
-    Call <ResponseBody> getStuff(@Path("id") int id);
-
-
+    @GET("/rooms")
+    Call<List<Room>> getRooms();
 }

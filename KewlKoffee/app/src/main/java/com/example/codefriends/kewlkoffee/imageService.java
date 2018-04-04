@@ -30,8 +30,8 @@ import retrofit2.http.Path;
 public interface imageService{
 
     @FormUrlEncoded
-    @POST("/post")
-    Call <Void> postImage(@Field("image") String base);
+    @POST("/streams")
+    Call <Void> postImage(@Field("image") String base, @Field("roomId") int id);
 
     @GET("/{id}")
     Call <ResponseBody> getStuff(@Path("id") int id);
