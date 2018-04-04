@@ -8,22 +8,15 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import java.io.IOException;
 import java.util.List;
-
-
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,7 +41,8 @@ public class BoardActivity extends AppCompatActivity {
     private Button[] boards = new Button[20];
     Context context = this;
     private int NEW_ROOM_CODE = 1;
-    private int STREAM_START_CODE = 2;
+    private int STREAM_CODE = 2;
+    private int STREAM_EXIT_CODE = 3;
 
     public static Intent newIntent (Context packageContext) {
         Intent intent = new Intent(packageContext, StreamActivity.class);
@@ -92,7 +86,7 @@ public class BoardActivity extends AppCompatActivity {
             buttonItem.setOnClickListener((View v) -> {
                 StreamActivity.r = finalR.get(finalI);
                 Intent intent = StreamActivity.newIntent(BoardActivity.this);
-                startActivityForResult(intent, 0);
+                startActivityForResult(intent, STREAM_CODE);
             });
             layout.addView(buttonItem, p);
         }
@@ -128,7 +122,6 @@ public class BoardActivity extends AppCompatActivity {
         });
 
 
-
         LinearLayout layout = findViewById(R.id.mainLayout);
         TextView textView = new TextView(this);
         textView.setText("Board of streams");
@@ -147,20 +140,6 @@ public class BoardActivity extends AppCompatActivity {
         }
 
 
-
-
-
-
-        cameraButton = findViewById(R.id.button2);
-        cameraButton.setOnClickListener (v -> {
-            // Start CheatActivity
-            //   Intent intent = new Intent(QuizActivity.this, CheatActivity.class);
-            Intent intent = ImageCaptureCamera2API.newIntent(BoardActivity.this);
-            //            startActivity(intent);
-            // Starting an activity and hoping to get result
-            startActivityForResult(intent, 0);
-        });
-
         newRoom = findViewById(R.id.newRoomButton);
         newRoom.setOnClickListener(v -> {
             Intent intent = NewRoomActivity.newIntent(BoardActivity.this);
@@ -168,17 +147,8 @@ public class BoardActivity extends AppCompatActivity {
         });
 
 
-
         notifactionButton = findViewById(R.id.buttonNotify);
-        notifactionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                createNotification("Það er til kaffi");
-
-            }
-        });
-
+        notifactionButton.setOnClickListener(v -> createNotification("Það er til kaffi"));
     }
 
 
@@ -189,7 +159,26 @@ public class BoardActivity extends AppCompatActivity {
                 int newRoomId = data.getExtras().getInt("roomId");
                 Intent streamStart = ImageCaptureCamera2API.newIntent(BoardActivity.this);
                 streamStart.putExtra("roomId", newRoomId);
-                startActivityForResult(streamStart,STREAM_START_CODE);
+                startActivityForResult(streamStart,STREAM_EXIT_CODE);
+            }
+        }
+
+        if (requestCode == STREAM_EXIT_CODE) {
+            if (resultCode == RESULT_OK) {
+                int roomId = data.getExtras().getInt("roomId");
+                Call call = RoomsControl.mRoomservice.deleteRoom(roomId);
+
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onResponse(Call call, Response response) {
+                        System.out.println("Room was deleted");
+                    }
+
+                    @Override
+                    public void onFailure(Call call, Throwable t) {
+
+                    }
+                });
             }
         }
     }

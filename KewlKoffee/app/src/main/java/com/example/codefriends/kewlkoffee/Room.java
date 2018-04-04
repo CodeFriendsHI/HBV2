@@ -23,10 +23,6 @@ public class Room {
         this.token = token;
     }
 
-    public String generateToken(){
-        return "kewl";
-    }
-
     public String getStream(){
         return stream;
     }
@@ -36,7 +32,7 @@ public class Room {
     }
 
     public void setStream(int id) {
-        String baseUrl = "https://kewlserver.herokuapp.com/";
+        String baseUrl = "https://kewlserver.herokuapp.com/streams/";
         this.stream = baseUrl + Integer.toString(id);
     }
 

@@ -37,22 +37,4 @@ public interface imageService{
     Call <ResponseBody> getStuff(@Path("id") int id);
 
 
-    /*
-    @GET("images/{id}")
-    Call<List<Image>> listRepos(@Path("id") String id);
-    */
-
-    /*
-    retrofitInstance retrofit = new retrofitInstance();
-
-    Retrofit retrofitService = retrofit.getRetroInstance(getApplicationContext());
-
-    imageService service = retrofit.create(imageService.class);
-    */
-
-
-
-
-
-
 }

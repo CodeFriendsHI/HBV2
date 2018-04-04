@@ -78,7 +78,6 @@ public class NewRoomActivity extends AppCompatActivity {
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        System.out.println("=================PRINTING RESPONSE===================");
                         try {
                             int newRoomId = Integer.parseInt(response.body().string());
 
