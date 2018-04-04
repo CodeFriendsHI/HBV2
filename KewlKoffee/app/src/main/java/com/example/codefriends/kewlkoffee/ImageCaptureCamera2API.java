@@ -43,7 +43,7 @@ import retrofit2.Response;
 
 
  /**
-* FineItalianSpagetti code
+* FineItalianSpaghetti code
 *
 * @author  Daníel Guðnason 
 * @version 0.01

@@ -73,7 +73,7 @@ public class NewRoomActivity extends AppCompatActivity {
                 System.out.println(streamName);
                 System.out.println(token);
 
-                Call call = RoomsControl.mRoomservice.createRoom(streamName, "stream", token);
+                Call call = RoomsControl.mRoomservice.createRoom(streamName, null, token);
 
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override

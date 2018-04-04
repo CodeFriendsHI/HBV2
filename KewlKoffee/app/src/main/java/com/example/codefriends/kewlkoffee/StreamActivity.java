@@ -22,7 +22,7 @@ import okhttp3.Response;
 * StreamActivity
 *
 * @author  Aðalsteinn Ingi Pálsson and Geir Gardarson
-* @version 0.02
+* @version 0.03
 * @since   18.2.2018 
 */
 

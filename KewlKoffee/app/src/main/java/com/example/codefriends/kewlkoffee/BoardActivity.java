@@ -8,6 +8,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -17,14 +18,15 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.util.List;
 
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
 
 
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -37,7 +39,7 @@ import android.app.PendingIntent;
 
 public class BoardActivity extends AppCompatActivity {
 
-
+    private List<Room> rooms;
     private Button switchButton;
     private Button cameraButton;
     private Button newRoom;
@@ -60,6 +62,44 @@ public class BoardActivity extends AppCompatActivity {
         return intent;
     }
 
+
+    private void loadRooms(List<Room> r) {
+        LinearLayout layout = findViewById(R.id.mainLayout);
+        TextView textView = new TextView(this);
+        textView.setText("Board of streams");
+        textView.setTextSize(24);
+        textView.setGravity(Gravity.CENTER);
+        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.FILL_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+
+
+        for (int i = 0; i < rooms.size(); i++) {
+
+            Room room = rooms.get(i);
+
+            String roomName = room.getName();
+            int roomId = room.getId();
+            room.setStream(roomId);
+            String roomUrl = room.getStream();
+
+            Button buttonItem = new Button(this);
+            buttonItem.setText(roomName);
+            buttonItem.setBackgroundResource(R.drawable.ic_test);
+            int finalI = i;
+            List<Room> finalR = r;
+            buttonItem.setOnClickListener((View v) -> {
+                StreamActivity.r = finalR.get(finalI);
+                Intent intent = StreamActivity.newIntent(BoardActivity.this);
+                startActivityForResult(intent, 0);
+            });
+            layout.addView(buttonItem, p);
+        }
+    }
+
+
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,32 +111,23 @@ public class BoardActivity extends AppCompatActivity {
         List<Room> r;
         r = room.getRooms();
 
-        //Optional<Room> test = room.findRooms(r ,"lala");
-        //final Room rooms = test.get();
 
-        //System.out.print(rooms.getName());
+        Call call = RoomsControl.mRoomservice.getRooms();
 
-        OkHttpClient client = new OkHttpClient();
-
-
-        Request request = new Request.Builder()
-                .url("https://kewlserver.herokuapp.com/rooms")
-                .build();
-        client.newCall(request).enqueue(new okhttp3.Callback() {
+        call.enqueue(new Callback() {
             @Override
-            public void onFailure(okhttp3.Call call, IOException e) {
-                e.printStackTrace();
+            public void onResponse(Call call, Response response) {
+                rooms = (List<Room>) response.body();
+                loadRooms(rooms);
             }
 
             @Override
-            public void onResponse(okhttp3.Call call, final okhttp3.Response response) throws IOException {
-                if (!response.isSuccessful()) {
-                    throw new IOException("Unexpected code " + response);
-                } else {
-                    //System.out.println(response.body().string());
-                }
+            public void onFailure(Call call, Throwable t) {
+                System.out.println("Failed to get rooms");
             }
         });
+
+
 
         LinearLayout layout = findViewById(R.id.mainLayout);
         TextView textView = new TextView(this);
@@ -110,19 +141,15 @@ public class BoardActivity extends AppCompatActivity {
 
         layout.addView(textView, p);
 
-        for (int i = 0; i < 5; i++) {
-            Button buttonItem = new Button(this);
-            buttonItem.setText("Stream " + i);
-            buttonItem.setBackgroundResource(R.drawable.ic_test);
-            int finalI = i;
-            List<Room> finalR = r;
-            buttonItem.setOnClickListener((View v) -> {
-                StreamActivity.r = finalR.get(finalI);
-                Intent intent = StreamActivity.newIntent(BoardActivity.this);
-                startActivityForResult(intent, 0);
-            });
-            layout.addView(buttonItem, p);
+
+        if (rooms != null) {
+            loadRooms(r);
         }
+
+
+
+
+
 
         cameraButton = findViewById(R.id.button2);
         cameraButton.setOnClickListener (v -> {

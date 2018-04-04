@@ -34,4 +34,13 @@ public class Room {
     public String getName(){
         return name;
     }
+
+    public void setStream(int id) {
+        String baseUrl = "https://kewlserver.herokuapp.com/";
+        this.stream = baseUrl + Integer.toString(id);
+    }
+
+    public int getId() {
+        return this.id;
+    }
 }
