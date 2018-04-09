@@ -19,6 +19,7 @@ import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.Image;
 import android.media.ImageReader;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -43,7 +44,7 @@ import retrofit2.Response;
 
 
  /**
-* FineItalianSpagetti code
+* FineItalianSpaghetti code
 *
 * @author  Daníel Guðnason 
 * @version 0.01
@@ -76,6 +77,7 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
     private HandlerThread mBackgroundThread;
     private imageService mImageService;
     private int roomId;
+    private Intent data;
 
     public static Intent newIntent (Context packageContext) {
         Intent intent = new Intent(packageContext, ImageCaptureCamera2API.class);
@@ -99,6 +101,14 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
 
         int id = getIntent().getExtras().getInt("roomId");
         this.roomId = id;
+
+        this.data = new Intent();
+        String text = "Stream";
+
+        data.putExtra("roomId", this.roomId);
+
+        data.setData(Uri.parse(text));
+        setResult(RESULT_OK, data);
     }
 
     TextureView.SurfaceTextureListener textureListener = new TextureView.SurfaceTextureListener() {

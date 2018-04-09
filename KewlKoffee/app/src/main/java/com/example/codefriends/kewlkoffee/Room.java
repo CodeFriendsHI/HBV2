@@ -23,15 +23,20 @@ public class Room {
         this.token = token;
     }
 
-    public String generateToken(){
-        return "kewl";
-    }
-
     public String getStream(){
         return stream;
     }
 
     public String getName(){
         return name;
+    }
+
+    public void setStream(int id) {
+        String baseUrl = "https://kewlserver.herokuapp.com/streams/";
+        this.stream = baseUrl + Integer.toString(id);
+    }
+
+    public int getId() {
+        return this.id;
     }
 }

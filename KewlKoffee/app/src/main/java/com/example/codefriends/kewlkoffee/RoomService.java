@@ -8,6 +8,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -31,4 +32,8 @@ public interface RoomService {
 
     @GET("/rooms")
     Call<List<Room>> getRooms();
+
+
+    @DELETE("/rooms/{id}")
+    Call<Void> deleteRoom(@Path("id") int id);
 }
