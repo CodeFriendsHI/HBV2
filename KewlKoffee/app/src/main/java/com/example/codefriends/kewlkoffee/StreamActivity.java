@@ -7,9 +7,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.firebase.client.Firebase;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import okhttp3.Call;
@@ -18,11 +25,12 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+
  /**
 * StreamActivity
 *
-* @author  Aðalsteinn Ingi Pálsson and Geir Gardarson
-* @version 0.03
+* @author  Aðalsteinn Ingi Pálsson, Daníel Guðnason and Geir Gardarson
+* @version 0.02
 * @since   18.2.2018 
 */
 
@@ -34,6 +42,8 @@ public class StreamActivity extends AppCompatActivity {
     ImageView imageView;
     ImageButton btnPlayPause;
     TextView nameView;
+    private Button signupButton;
+    private Button sendButton;
 
     String streamUrl = r.getStream();
     String imageUrl;
@@ -45,12 +55,17 @@ public class StreamActivity extends AppCompatActivity {
         return intent;
     }
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         nameView = findViewById(R.id.headerView);
+
+        //Previous versions of Firebase
+        Firebase.setAndroidContext(this);
 
 
         Handler handler = new Handler();
@@ -77,6 +92,7 @@ public class StreamActivity extends AppCompatActivity {
                     }
                 });
                 nameView.setText(r.getName());
+                //Log.d("herbergi", "heitir " + r.getName());
                 //btnPlayPause = findViewById(R.id.btn_play_pause);
                 //btnPlayPause.setOnClickListener(view -> Picasso.with(getApplicationContext()).load(imageUrl).into(imageView));
                 imageView = findViewById(R.id.imageView);
@@ -85,9 +101,38 @@ public class StreamActivity extends AppCompatActivity {
             }
         }, delay);
 
+        /**
+         * Skráir notenda við topic
+         * Núna fær notandi skilaboð fyrir þetta herbergi
+         */
+        signupButton = findViewById(R.id.buttonSignup);
+        signupButton.setOnClickListener(v -> {
+
+            String name = r.getName().replaceAll("\\s+","-");
+            Log.d("topicname" , name);
+
+            FirebaseMessaging.getInstance().subscribeToTopic(name);
+
+        });
+
+        sendButton = findViewById(R.id.buttonSend);
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String label = "Label";
+                String message = "kaffi kaffi kaffi";
+                String topic = r.getName().replaceAll("\\s+","-");
+                Log.d("send", topic);
+                Notification.sendNotificationToTopic(label, message, topic );
+
+            }
+        });
+
 
 
 
     }
+
+
 
 }
