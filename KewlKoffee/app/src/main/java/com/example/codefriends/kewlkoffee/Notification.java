@@ -1,17 +1,13 @@
 package com.example.codefriends.kewlkoffee;
 
-import android.os.Bundle;
+
 import android.app.Activity;
 import android.util.Log;
-
 import com.firebase.client.Firebase;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.messaging.RemoteMessage;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static android.content.ContentValues.TAG;
 
 /**
 * Notification 
@@ -43,9 +39,36 @@ public class Notification extends Activity {
         notification.put("message", message);
         notification.put("topic", topic);
 
-        Log.d("ping", "check");
-
         notifications.push().setValue(notification);
+    }
+
+    static void makingKoffee(Room r){
+        String label = "Í vinnslu";
+        String message = "Verið er að hella upp á kaffi";
+        String topic = r.getName().replaceAll("\\s+","-");
+        Notification.sendNotificationToTopic(label, message, topic );
+    }
+
+    static void koffeeReady(Room r){
+        String label = "Tilbúið";
+        String message = "Kaffið er tilbúið";
+        String topic = r.getName().replaceAll("\\s+","-");
+        Notification.sendNotificationToTopic(label, message, topic );
+    }
+
+    static void wantKoffee(Room r){
+        String label = "Kaffi?";
+        String message = "Getur einhver hellt upp á kaffi?";
+        String topic = r.getName().replaceAll("\\s+","-");
+        Notification.sendNotificationToTopic(label, message, topic );
+    }
+
+    static void wantKoffeeAll(){
+        Log.d("ping", "check");
+        String label = "Kaffi?";
+        String message = "Getur einhver hellt upp á kaffi?";
+        Notification.sendNotificationToTopic(label, message, "all" );
+        Log.d("ping", "check2");
     }
 
 }

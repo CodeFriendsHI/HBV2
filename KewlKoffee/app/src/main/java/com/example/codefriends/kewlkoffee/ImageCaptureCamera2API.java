@@ -54,8 +54,8 @@ import retrofit2.Response;
 public class ImageCaptureCamera2API extends AppCompatActivity {
     private static final String TAG = "ImageCaptureCamera2API";
     private Button takePictureButton;
-     private Button makingKoffeeButton;
-     private Button koffeeReadyButton;
+    private Button makingKoffeeButton;
+    private Button koffeeReadyButton;
     private TextureView textureView;
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
 
@@ -103,6 +103,10 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
             stream = !stream;
             takePicture();
         });
+
+        //buttons
+        koffeeReadyButton.setOnClickListener(v -> Notification.wantKoffee(r));
+        makingKoffeeButton.setOnClickListener(v -> Notification.makingKoffee(r));
 
         int id = getIntent().getExtras().getInt("roomId");
         this.roomId = id;
@@ -366,23 +370,6 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
         }, 5000);
     }
 
-    // Button Notifaction sending
-
-     void makingKoffee(){
-         String label = "Kaffi?";
-         String message = "Verið er að hella upp á kaffi";
-         String topic = r.getName().replaceAll("\\s+","-");
-         Log.d("send", topic);
-         Notification.sendNotificationToTopic(label, message, topic );
-     }
-
-     void koffeeReady(){
-         String label = "Tilbúið";
-         String message = "Kaffið er tilbúið";
-         String topic = r.getName().replaceAll("\\s+","-");
-         Log.d("send", topic);
-         Notification.sendNotificationToTopic(label, message, topic );
-     }
 
 
 }

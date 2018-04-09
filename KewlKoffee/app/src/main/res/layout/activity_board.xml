@@ -22,7 +22,7 @@
                 android:id="@+id/buttonNotify"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Do it!"
+                android:text="Mig langar í kaffi"
                 />
 
             <Button

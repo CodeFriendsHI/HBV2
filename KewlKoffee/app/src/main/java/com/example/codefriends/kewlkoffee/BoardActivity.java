@@ -17,6 +17,9 @@ import java.util.List;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+
+import com.firebase.client.Firebase;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -146,9 +149,11 @@ public class BoardActivity extends AppCompatActivity {
             startActivityForResult(intent, NEW_ROOM_CODE);
         });
 
+        //set firebase context
+        Firebase.setAndroidContext(this);
 
         notifactionButton = findViewById(R.id.buttonNotify);
-        notifactionButton.setOnClickListener(v -> createNotification("Það er til kaffi"));
+        notifactionButton.setOnClickListener(v -> com.example.codefriends.kewlkoffee.Notification.wantKoffeeAll());
     }
 
 
@@ -184,7 +189,7 @@ public class BoardActivity extends AppCompatActivity {
     }
 
 
-    private NotificationManager notifManager;
+    /*private NotificationManager notifManager;
 
     public void createNotification(String aMessage) {
         final int NOTIFY_ID = 1002;
@@ -248,6 +253,6 @@ public class BoardActivity extends AppCompatActivity {
 
         Notification notification = builder.build();
         notifManager.notify(NOTIFY_ID, notification);
-    }
+    }*/
 }
 

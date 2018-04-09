@@ -43,7 +43,10 @@ public class StreamActivity extends AppCompatActivity {
     ImageButton btnPlayPause;
     TextView nameView;
     private Button signupButton;
-    private Button sendButton;
+    private Button makingKoffeeButton;
+    private Button wantKoffeeButton;
+    private Button koffeereadyButton;
+
 
     String streamUrl = r.getStream();
     String imageUrl;
@@ -115,18 +118,15 @@ public class StreamActivity extends AppCompatActivity {
 
         });
 
-        sendButton = findViewById(R.id.buttonSend);
-        sendButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String label = "Label";
-                String message = "kaffi kaffi kaffi";
-                String topic = r.getName().replaceAll("\\s+","-");
-                Log.d("send", topic);
-                Notification.sendNotificationToTopic(label, message, topic );
+        wantKoffeeButton = findViewById(R.id.wantKoffee);
+        wantKoffeeButton.setOnClickListener(v -> Notification.wantKoffee(r));
 
-            }
-        });
+        makingKoffeeButton = findViewById(R.id.makingKoffee);
+        makingKoffeeButton.setOnClickListener(v -> Notification.makingKoffee(r));
+
+        koffeereadyButton = findViewById(R.id.koffeeReady);
+        koffeereadyButton.setOnClickListener(v -> Notification.koffeeReady(r));
+
 
 
 
