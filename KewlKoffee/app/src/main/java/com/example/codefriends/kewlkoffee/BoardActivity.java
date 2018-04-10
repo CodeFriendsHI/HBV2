@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +27,10 @@ import retrofit2.Response;
 * Roomservice 
 *
 * @author  Aðalsteinn Ingi Pálsson
+*          Daníel Guðnason
+*          Fannar Gauti Guðmundsson
+*          Geir Garðarsson
+*
 * @version 0.01
 * @since   18.2.2018 
 */
@@ -59,6 +64,7 @@ public class BoardActivity extends AppCompatActivity {
 
     private void loadRooms(List<Room> r) {
         LinearLayout layout = findViewById(R.id.mainLayout);
+        layout.removeViews(3,layout.getChildCount() - 3);
         TextView textView = new TextView(this);
         textView.setText("Board of streams");
         textView.setTextSize(24);
@@ -68,10 +74,9 @@ public class BoardActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
 
+        for (int i = 0; i < r.size(); i++) {
 
-        for (int i = 0; i < rooms.size(); i++) {
-
-            Room room = rooms.get(i);
+            Room room = r.get(i);
 
             String roomName = room.getName();
             int roomId = room.getId();
@@ -79,6 +84,7 @@ public class BoardActivity extends AppCompatActivity {
             String roomUrl = room.getStream();
 
             Button buttonItem = new Button(this);
+            buttonItem.setHeight(400);
             buttonItem.setText(roomName);
             buttonItem.setBackgroundResource(R.drawable.ic_test);
             int finalI = i;
@@ -105,22 +111,7 @@ public class BoardActivity extends AppCompatActivity {
         List<Room> r;
         r = room.getRooms();
 
-
-        Call call = RoomsControl.mRoomservice.getRooms();
-
-        call.enqueue(new Callback() {
-            @Override
-            public void onResponse(Call call, Response response) {
-                rooms = (List<Room>) response.body();
-                loadRooms(rooms);
-            }
-
-            @Override
-            public void onFailure(Call call, Throwable t) {
-                System.out.println("Failed to get rooms");
-            }
-        });
-
+        requestRooms();
 
         LinearLayout layout = findViewById(R.id.mainLayout);
         TextView textView = new TextView(this);
@@ -139,16 +130,35 @@ public class BoardActivity extends AppCompatActivity {
             loadRooms(r);
         }
 
-
-        newRoom = findViewById(R.id.newRoomButton);
-        newRoom.setOnClickListener(v -> {
+        FloatingActionButton newroom = findViewById(R.id.newRoomButton);
+        newroom.setOnClickListener(v -> {
             Intent intent = NewRoomActivity.newIntent(BoardActivity.this);
             startActivityForResult(intent, NEW_ROOM_CODE);
         });
 
+        FloatingActionButton reload = findViewById(R.id.reloadButton);
+        reload.setOnClickListener(v -> requestRooms());
 
         notifactionButton = findViewById(R.id.buttonNotify);
         notifactionButton.setOnClickListener(v -> createNotification("Það er til kaffi"));
+    }
+
+
+    private void requestRooms() {
+        Call call = RoomsControl.mRoomservice.getRooms();
+
+        call.enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                rooms = (List<Room>) response.body();
+                loadRooms(rooms);
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                System.out.println("Failed to get rooms");
+            }
+        });
     }
 
 

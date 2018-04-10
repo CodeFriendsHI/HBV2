@@ -25,13 +25,35 @@
                 android:text="Do it!"
                 />
 
-            <Button
-                android:id="@+id/newRoomButton"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Room"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:orientation="horizontal">
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/reloadButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="52dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    app:backgroundTint="@android:color/holo_blue_dark"
+                    app:rippleColor="@android:color/holo_blue_dark"
+                    app:srcCompat="@drawable/reload" />
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/newRoomButton"
+                    android:layout_width="215dp"
+                    android:layout_marginLeft="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    app:backgroundTint="@android:color/holo_blue_dark"
+                    app:rippleColor="@android:color/holo_blue_dark"
+                    app:srcCompat="@drawable/plus" />
+            </LinearLayout>
 
 
         </LinearLayout>

@@ -19,6 +19,7 @@ import retrofit2.http.Path;
 * Roomservice 
 *
 * @author  Aðalsteinn Ingi Pálsson
+*          Geir Garðarsson
 * @version 0.01
 * @since   13.3.2018 
 */
