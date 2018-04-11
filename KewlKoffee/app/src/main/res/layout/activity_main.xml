@@ -38,7 +38,7 @@
         android:layout_marginEnd="47dp"
         android:background="@android:color/holo_blue_dark"
         android:textColor="@android:color/black"
-        android:text="I'm making koffee" />
+        android:text="@string/i_m_making_koffee" />
 
     <Button
         android:id="@+id/koffeeReady"
@@ -48,16 +48,16 @@
         android:layout_alignEnd="@+id/headerView"
         android:background="@android:color/holo_blue_dark"
         android:textColor="@android:color/black"
-        android:text="Koffee is ready" />
+        android:text="@string/koffee_is_ready" />
 
 
     <TextView
         android:id="@+id/headerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="KewlKoffee"
+        android:text="@string/kewlkoffee"
         android:layout_alignParentTop="true"
-        android:textSize="50dp"
+        android:textSize="50sp"
         android:fontFamily="sans-serif-light"/>
 
 
