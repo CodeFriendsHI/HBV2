@@ -24,11 +24,12 @@
 
             <ImageView
                 android:id="@+id/imageView2"
+                android:layout_marginBottom="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="187dp"
                 android:layout_marginTop="230dp"
                 android:layout_weight="1"
-                app:srcCompat="@mipmap/ic_launcher" />
+                app:srcCompat="@drawable/main" />
 
             <LinearLayout
                 android:layout_width="match_parent"

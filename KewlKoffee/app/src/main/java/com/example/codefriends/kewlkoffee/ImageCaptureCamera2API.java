@@ -370,7 +370,7 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
                 System.out.println("Should take picture run");
                 takePicture();
             }
-        }, 5000);
+        }, 1000);
     }
 
 

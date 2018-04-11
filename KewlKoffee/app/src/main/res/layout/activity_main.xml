@@ -6,39 +6,55 @@
     android:layout_height="match_parent"
     tools:context="com.example.codefriends.kewlkoffee.StreamActivity">
 
-    <Button
-        android:id="@+id/buttonSignup"
+    <TextView
+        android:id="@+id/headerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/imageView"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="20dp"
-        android:background="@android:color/holo_blue_dark"
-        android:textColor="@android:color/black"
-        android:text="@string/signup" />
+        android:layout_alignParentTop="true"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/kewlkoffee"
+        android:textSize="50sp" />
 
-    <Button
-        android:id="@+id/wantKoffee"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/headerView"
-        android:layout_marginStart="23dp"
-        android:background="@android:color/holo_blue_dark"
-        android:textColor="@android:color/black"
-        android:text="@string/i_want_koffee" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:orientation="horizontal">
 
+        <Button
+            android:id="@+id/makingKoffee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/buttonSignup"
+            android:layout_below="@+id/buttonSignup"
+            android:layout_weight="1"
+            android:background="@android:color/holo_blue_dark"
+            android:text="@string/i_m_making_koffee"
+            android:textColor="@android:color/black" />
 
-    <Button
-        android:id="@+id/makingKoffee"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/buttonSignup"
-        android:layout_below="@+id/buttonSignup"
-        android:layout_marginEnd="47dp"
-        android:background="@android:color/holo_blue_dark"
-        android:textColor="@android:color/black"
-        android:text="@string/i_m_making_koffee" />
+        <Button
+            android:id="@+id/wantKoffee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/headerView"
+            android:layout_weight="1"
+            android:background="@android:color/holo_blue_dark"
+            android:text="@string/i_want_koffee"
+            android:textColor="@android:color/black" />
+
+        <Button
+            android:id="@+id/buttonSignup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/imageView"
+            android:layout_alignParentEnd="true"
+            android:layout_weight="1"
+            android:background="@android:color/holo_blue_dark"
+            android:text="@string/signup"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/koffeeReady"
@@ -51,20 +67,11 @@
         android:text="@string/koffee_is_ready" />
 
 
-    <TextView
-        android:id="@+id/headerView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/kewlkoffee"
-        android:layout_alignParentTop="true"
-        android:textSize="50sp"
-        android:fontFamily="sans-serif-light"/>
-
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="700px"
+        android:layout_marginTop="250px"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/headerView" />
 
