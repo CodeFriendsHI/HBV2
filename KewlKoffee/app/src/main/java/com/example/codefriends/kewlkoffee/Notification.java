@@ -49,6 +49,13 @@ public class Notification extends Activity {
         Notification.sendNotificationToTopic(label, message, topic );
     }
 
+    static void makingKoffeeName(String r){
+        String label = "Ready";
+        String message = "Kaffið er tilbúið";
+        String topic = r.replaceAll("\\s+","-");
+        Notification.sendNotificationToTopic(label, message, topic );
+    }
+
     static void koffeeReady(Room r){
         String label = "Tilbúið";
         String message = "Kaffið er tilbúið";
@@ -60,6 +67,13 @@ public class Notification extends Activity {
         String label = "Kaffi?";
         String message = "Getur einhver hellt upp á kaffi?";
         String topic = r.getName().replaceAll("\\s+","-");
+        Notification.sendNotificationToTopic(label, message, topic );
+    }
+
+    static void wantKoffeeName(String r){
+        String label = "Kaffi?";
+        String message = "Getur einhver hellt upp á kaffi?";
+        String topic = r.replaceAll("\\s+","-");
         Notification.sendNotificationToTopic(label, message, topic );
     }
 
