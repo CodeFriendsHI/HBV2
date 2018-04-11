@@ -26,7 +26,9 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="16dp"
             android:layout_marginTop="16dp"
-            android:text="Start stream!" />
+            android:background="@android:color/holo_blue_dark"
+            android:textColor="@android:color/black"
+            android:text="@string/start_stream" />
 
         <Button
             android:id="@+id/makingKoffee"
@@ -35,7 +37,9 @@
             android:layout_alignBottom="@+id/btn_takepicture"
             android:layout_alignParentStart="true"
             android:layout_marginStart="16dp"
-            android:text="Creating" />
+            android:background="@android:color/holo_blue_dark"
+            android:textColor="@android:color/black"
+            android:text="@string/creating" />
 
         <Button
             android:id="@+id/koffeeReady"
@@ -44,7 +48,9 @@
             android:layout_alignBottom="@+id/btn_takepicture"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="17dp"
-            android:text="Ready" />
+            android:background="@android:color/holo_blue_dark"
+            android:textColor="@android:color/black"
+            android:text="@string/ready" />
 
     </RelativeLayout>
 

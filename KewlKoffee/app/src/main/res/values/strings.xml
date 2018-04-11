@@ -20,4 +20,11 @@
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
     <string name="i_want_koffee">I want Koffee</string>
     <string name="signup">signup</string>
+    <string name="i_m_making_koffee">I\'m making koffee</string>
+    <string name="kewlkoffee">KewlKoffee</string>
+    <string name="koffee_is_ready">Koffee is ready</string>
+    <string name="creating">Creating</string>
+    <string name="start_stream">Start stream!</string>
+    <string name="ready">Ready</string>
+    <string name="mig_langar_kaffi">Mig langar í kaffi</string>
 </resources>

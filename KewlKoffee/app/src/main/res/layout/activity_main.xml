@@ -13,6 +13,8 @@
         android:layout_above="@+id/imageView"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="20dp"
+        android:background="@android:color/holo_blue_dark"
+        android:textColor="@android:color/black"
         android:text="@string/signup" />
 
     <Button
@@ -22,6 +24,8 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/headerView"
         android:layout_marginStart="23dp"
+        android:background="@android:color/holo_blue_dark"
+        android:textColor="@android:color/black"
         android:text="@string/i_want_koffee" />
 
 
@@ -32,24 +36,28 @@
         android:layout_alignEnd="@+id/buttonSignup"
         android:layout_below="@+id/buttonSignup"
         android:layout_marginEnd="47dp"
-        android:text="I'm making koffee" />
+        android:background="@android:color/holo_blue_dark"
+        android:textColor="@android:color/black"
+        android:text="@string/i_m_making_koffee" />
 
     <Button
         android:id="@+id/koffeeReady"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btn_play_pause"
-        android:layout_toEndOf="@+id/wantKoffee"
-        android:text="Koffee is ready" />
+        android:layout_alignEnd="@+id/headerView"
+        android:background="@android:color/holo_blue_dark"
+        android:textColor="@android:color/black"
+        android:text="@string/koffee_is_ready" />
 
 
     <TextView
         android:id="@+id/headerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="KewlKoffee"
+        android:text="@string/kewlkoffee"
         android:layout_alignParentTop="true"
-        android:textSize="50dp"
+        android:textSize="50sp"
         android:fontFamily="sans-serif-light"/>
 
 
@@ -57,7 +65,7 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="700px"
-        android:layout_above="@+id/btn_play_pause"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/headerView" />
 
     <ImageButton
