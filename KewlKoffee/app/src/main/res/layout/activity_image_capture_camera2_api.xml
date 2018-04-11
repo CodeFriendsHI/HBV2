@@ -26,6 +26,8 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="16dp"
             android:layout_marginTop="16dp"
+            android:backgroundTint="@android:color/holo_blue_dark"
+            android:rippleColor="@android:color/holo_blue_dark"
             android:text="Start stream!" />
 
         <Button
@@ -35,6 +37,8 @@
             android:layout_alignBottom="@+id/btn_takepicture"
             android:layout_alignParentStart="true"
             android:layout_marginStart="16dp"
+            android:backgroundTint="@android:color/holo_blue_dark"
+            android:rippleColor="@android:color/holo_blue_dark"
             android:text="Creating" />
 
         <Button
@@ -44,6 +48,8 @@
             android:layout_alignBottom="@+id/btn_takepicture"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="17dp"
+            android:backgroundTint="@android:color/holo_blue_dark"
+            android:rippleColor="@android:color/holo_blue_dark"
             android:text="Ready" />
 
     </RelativeLayout>
