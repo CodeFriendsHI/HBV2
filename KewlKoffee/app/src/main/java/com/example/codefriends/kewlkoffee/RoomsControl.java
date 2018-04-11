@@ -91,7 +91,7 @@ public class RoomsControl {
 
     public static String generateToken() {
 
-        String[] words = {"kewl", "java", "spring", "koffee", "time", "react", "wow"};
+        String[] words = {"cool", "java", "spring", "koffee", "time", "react", "wow", "beans"};
 
         int a = (int)Math.floor(Math.random()*words.length);
         int b = (int)Math.floor(Math.random()*words.length);

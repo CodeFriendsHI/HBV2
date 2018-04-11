@@ -210,6 +210,9 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
 
 
                 String base = Base64.encodeToString(bytes, Base64.DEFAULT);
+                System.out.println("coolman");
+                System.out.println(roomId);
+                System.out.println(this.roomId);
                 Call call = mImageService.postImage(base, roomId);
 
                 call.enqueue(new Callback() {
