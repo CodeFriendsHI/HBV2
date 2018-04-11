@@ -15,7 +15,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -173,10 +177,21 @@ public class BoardActivity extends AppCompatActivity {
         if (requestCode == NEW_ROOM_CODE) {
             if (resultCode == RESULT_OK) {
                 int newRoomId = data.getExtras().getInt("roomId");
+
+
                 Intent streamStart = ImageCaptureCamera2API.newIntent(BoardActivity.this);
                 System.out.println("printing new room id");
                 System.out.println(newRoomId);
                 streamStart.putExtra("roomId", newRoomId);
+                // streamStart.putExtra("roomObject", roomObject);
+                if(rooms.stream().filter(r -> r.getId() == newRoomId).findFirst().isPresent() ) {
+                    Optional<Room> roomObject = rooms.stream().filter(r -> r.getId() == newRoomId).findFirst();
+                    String roomName = roomObject.get().getName();
+                    System.out.println("hérna " + roomName);
+
+                    streamStart.putExtra("roomName", roomName);
+                }
+
                 startActivityForResult(streamStart,STREAM_EXIT_CODE);
             }
         }

@@ -34,6 +34,9 @@ import android.view.Surface;
 import android.view.TextureView;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.firebase.client.Firebase;
+
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -104,11 +107,19 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
             takePicture();
         });
 
+        String roomName = getIntent().getExtras().getString("roomName");
+        System.out.println(getIntent().getExtras().getString("roomName"));
+        System.out.println(roomName);
+
+
         //buttons
-        koffeeReadyButton.setOnClickListener(v -> Notification.wantKoffee(r));
-        makingKoffeeButton.setOnClickListener(v -> Notification.makingKoffee(r));
+        koffeeReadyButton.setOnClickListener(v -> Notification.wantKoffeeName("all"));
+        makingKoffeeButton.setOnClickListener(v -> Notification.makingKoffeeName("all"));
+
+        Firebase.setAndroidContext(this);
 
         int id = getIntent().getExtras().getInt("roomId");
+        System.out.println("geir " + id);
         this.roomId = id;
 
         this.data = new Intent();
