@@ -28,6 +28,24 @@
             android:layout_marginTop="16dp"
             android:text="Start stream!" />
 
+        <Button
+            android:id="@+id/makingKoffee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/btn_takepicture"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp"
+            android:text="Creating" />
+
+        <Button
+            android:id="@+id/koffeeReady"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/btn_takepicture"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="17dp"
+            android:text="Ready" />
+
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

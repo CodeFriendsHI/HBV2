@@ -7,6 +7,7 @@ package com.example.codefriends.kewlkoffee;
 import android.util.Log;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
@@ -24,6 +25,8 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.d(TAG, "Refreshed token: " + refreshedToken);
         Log.w(TAG, "Refreshed token: " + refreshedToken);
+        // subscribe to topic all so we can send notifactions to everyone
+        FirebaseMessaging.getInstance().subscribeToTopic("all");
 
     }
 

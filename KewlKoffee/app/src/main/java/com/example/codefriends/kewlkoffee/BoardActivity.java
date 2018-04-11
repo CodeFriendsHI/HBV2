@@ -19,6 +19,9 @@ import java.util.List;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+
+import com.firebase.client.Firebase;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -137,6 +140,7 @@ public class BoardActivity extends AppCompatActivity {
             startActivityForResult(intent, NEW_ROOM_CODE);
         });
 
+<<<<<<< HEAD
         FloatingActionButton reload = findViewById(R.id.reloadButton);
         reload.setOnClickListener(v -> requestRooms());
     }
@@ -157,6 +161,13 @@ public class BoardActivity extends AppCompatActivity {
                 System.out.println("Failed to get rooms");
             }
         });
+=======
+        //set firebase context
+        Firebase.setAndroidContext(this);
+
+        notifactionButton = findViewById(R.id.buttonNotify);
+        notifactionButton.setOnClickListener(v -> com.example.codefriends.kewlkoffee.Notification.wantKoffeeAll());
+>>>>>>> a46cce067de72c39bf060beb48de0ef9f837cd56
     }
 
 
@@ -194,7 +205,7 @@ public class BoardActivity extends AppCompatActivity {
     }
 
 
-    private NotificationManager notifManager;
+    /*private NotificationManager notifManager;
 
     public void createNotification(String aMessage) {
         final int NOTIFY_ID = 1002;
@@ -258,6 +269,6 @@ public class BoardActivity extends AppCompatActivity {
 
         Notification notification = builder.build();
         notifManager.notify(NOTIFY_ID, notification);
-    }
+    }*/
 }
 

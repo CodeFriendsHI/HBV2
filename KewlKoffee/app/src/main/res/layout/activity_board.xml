@@ -27,6 +27,12 @@
                 android:layout_height="187dp"
                 android:layout_weight="1"
                 app:srcCompat="@mipmap/ic_launcher" />
+            <Button
+                android:id="@+id/buttonNotify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mig langar í kaffi"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"

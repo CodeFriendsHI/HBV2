@@ -54,6 +54,8 @@ import retrofit2.Response;
 public class ImageCaptureCamera2API extends AppCompatActivity {
     private static final String TAG = "ImageCaptureCamera2API";
     private Button takePictureButton;
+    private Button makingKoffeeButton;
+    private Button koffeeReadyButton;
     private TextureView textureView;
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
 
@@ -78,6 +80,7 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
     private imageService mImageService;
     private int roomId;
     private Intent data;
+     public static Room r;
 
     public static Intent newIntent (Context packageContext) {
         Intent intent = new Intent(packageContext, ImageCaptureCamera2API.class);
@@ -92,12 +95,18 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
         assert textureView != null;
         textureView.setSurfaceTextureListener(textureListener);
         takePictureButton = findViewById(R.id.btn_takepicture);
+        makingKoffeeButton = findViewById(R.id.makingKoffee);
+        koffeeReadyButton = findViewById(R.id.koffeeReady);
         assert takePictureButton != null;
         mImageService = retrofitInstance.getRetroInstance(getApplicationContext()).create(imageService.class);
         takePictureButton.setOnClickListener(v -> {
             stream = !stream;
             takePicture();
         });
+
+        //buttons
+        koffeeReadyButton.setOnClickListener(v -> Notification.wantKoffee(r));
+        makingKoffeeButton.setOnClickListener(v -> Notification.makingKoffee(r));
 
         int id = getIntent().getExtras().getInt("roomId");
         this.roomId = id;
