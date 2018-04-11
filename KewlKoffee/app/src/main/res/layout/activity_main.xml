@@ -13,16 +13,35 @@
         android:layout_above="@+id/imageView"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="20dp"
-        android:text="signup" />
+        android:text="@string/signup" />
 
     <Button
-        android:id="@+id/buttonSend"
+        android:id="@+id/wantKoffee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/headerView"
         android:layout_marginStart="23dp"
-        android:text="send" />
+        android:text="@string/i_want_koffee" />
+
+
+    <Button
+        android:id="@+id/makingKoffee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/buttonSignup"
+        android:layout_below="@+id/buttonSignup"
+        android:layout_marginEnd="47dp"
+        android:text="I'm making koffee" />
+
+    <Button
+        android:id="@+id/koffeeReady"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_play_pause"
+        android:layout_toEndOf="@+id/wantKoffee"
+        android:text="Koffee is ready" />
+
 
     <TextView
         android:id="@+id/headerView"
@@ -48,4 +67,6 @@
         android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+
 </RelativeLayout>
