@@ -13,8 +13,8 @@
         android:layout_above="@+id/imageView"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="20dp"
-        android:backgroundTint="@android:color/holo_blue_dark"
-        android:rippleColor="@android:color/holo_blue_dark"
+        android:background="@android:color/holo_blue_dark"
+        android:textColor="@android:color/black"
         android:text="@string/signup" />
 
     <Button
@@ -24,8 +24,8 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/headerView"
         android:layout_marginStart="23dp"
-        android:backgroundTint="@android:color/holo_blue_dark"
-        android:rippleColor="@android:color/holo_blue_dark"
+        android:background="@android:color/holo_blue_dark"
+        android:textColor="@android:color/black"
         android:text="@string/i_want_koffee" />
 
 
@@ -36,8 +36,8 @@
         android:layout_alignEnd="@+id/buttonSignup"
         android:layout_below="@+id/buttonSignup"
         android:layout_marginEnd="47dp"
-        android:backgroundTint="@android:color/holo_blue_dark"
-        android:rippleColor="@android:color/holo_blue_dark"
+        android:background="@android:color/holo_blue_dark"
+        android:textColor="@android:color/black"
         android:text="I'm making koffee" />
 
     <Button
@@ -46,8 +46,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/btn_play_pause"
         android:layout_alignEnd="@+id/headerView"
-        android:backgroundTint="@android:color/holo_blue_dark"
-        android:rippleColor="@android:color/holo_blue_dark"
+        android:background="@android:color/holo_blue_dark"
+        android:textColor="@android:color/black"
         android:text="Koffee is ready" />
 
 
