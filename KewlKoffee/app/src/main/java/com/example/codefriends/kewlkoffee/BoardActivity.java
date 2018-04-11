@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -84,9 +85,9 @@ public class BoardActivity extends AppCompatActivity {
             String roomUrl = room.getStream();
 
             Button buttonItem = new Button(this);
-            buttonItem.setHeight(400);
             buttonItem.setText(roomName);
-            buttonItem.setBackgroundResource(R.drawable.ic_test);
+            buttonItem.setTextColor(getResources().getColor(android.R.color.white));
+            buttonItem.setBackgroundResource(R.drawable.cup_coffee);
             int finalI = i;
             List<Room> finalR = r;
             buttonItem.setOnClickListener((View v) -> {
@@ -138,9 +139,6 @@ public class BoardActivity extends AppCompatActivity {
 
         FloatingActionButton reload = findViewById(R.id.reloadButton);
         reload.setOnClickListener(v -> requestRooms());
-
-        notifactionButton = findViewById(R.id.buttonNotify);
-        notifactionButton.setOnClickListener(v -> createNotification("Það er til kaffi"));
     }
 
 
@@ -168,6 +166,8 @@ public class BoardActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 int newRoomId = data.getExtras().getInt("roomId");
                 Intent streamStart = ImageCaptureCamera2API.newIntent(BoardActivity.this);
+                System.out.println("printing new room id");
+                System.out.println(newRoomId);
                 streamStart.putExtra("roomId", newRoomId);
                 startActivityForResult(streamStart,STREAM_EXIT_CODE);
             }
