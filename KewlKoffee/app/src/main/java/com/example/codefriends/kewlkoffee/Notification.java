@@ -53,6 +53,8 @@ public class Notification extends Activity {
         String label = "Ready";
         String message = "Kaffið er tilbúið";
         String topic = r.replaceAll("\\s+","-");
+        Log.d("makingKoffee", "ping");
+        System.out.println(topic);
         Notification.sendNotificationToTopic(label, message, topic );
     }
 
