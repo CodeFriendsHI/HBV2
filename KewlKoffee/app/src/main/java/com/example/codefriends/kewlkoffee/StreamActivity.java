@@ -72,7 +72,7 @@ public class StreamActivity extends AppCompatActivity {
 
 
         Handler handler = new Handler();
-        int delay = 1000; //milliseconds
+        int delay = 3000; //milliseconds
 
         handler.postDelayed(new Runnable(){
             public void run(){

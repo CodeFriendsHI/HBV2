@@ -172,6 +172,7 @@ public class BoardActivity extends AppCompatActivity {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == NEW_ROOM_CODE) {
@@ -184,13 +185,6 @@ public class BoardActivity extends AppCompatActivity {
                 System.out.println(newRoomId);
                 streamStart.putExtra("roomId", newRoomId);
                 // streamStart.putExtra("roomObject", roomObject);
-                if(rooms.stream().filter(r -> r.getId() == newRoomId).findFirst().isPresent() ) {
-                    Optional<Room> roomObject = rooms.stream().filter(r -> r.getId() == newRoomId).findFirst();
-                    String roomName = roomObject.get().getName();
-                    System.out.println("hérna " + roomName);
-
-                    streamStart.putExtra("roomName", roomName);
-                }
 
                 startActivityForResult(streamStart,STREAM_EXIT_CODE);
             }

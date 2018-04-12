@@ -107,9 +107,9 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
             takePicture();
         });
 
-        String roomName = getIntent().getExtras().getString("roomName");
-        System.out.println(getIntent().getExtras().getString("roomName"));
-        System.out.println(roomName);
+//        String roomName = getIntent().getExtras().getString("roomName");
+//        System.out.println(getIntent().getExtras().getString("roomName"));
+//        System.out.println(roomName);
 
 
         //buttons
@@ -381,7 +381,7 @@ public class ImageCaptureCamera2API extends AppCompatActivity {
                 System.out.println("Should take picture run");
                 takePicture();
             }
-        }, 1000);
+        }, 3000);
     }
 
 
