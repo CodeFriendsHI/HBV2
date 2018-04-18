@@ -1,6 +1,27 @@
 # KewlKoffee
 
+Android app sem er notað til að streyma myndum. hugmyndin var að nota það til að kanna hvort það væri til kaffi í nördakjallaranum.
 
+## Forkröfur
+* java 8 eða hærra
+* Android Studios
+* [HBV2 Server](https://github.com/CodeFriendsHI/HBV2-Server) keyrandi 
+
+## Uppsetning
+
+1. opna skránna sem project í android studios 
+
+## Built With
+
+* [Android Studios](https://developer.android.com/studio/index.html) - forritunar umhverfi
+* [NodeJS](https://nodejs.org/en/) - umhverfi notað fyrir vefþjónustuna
+* [Gradle](https://gradle.org/) - byggingartól
+* [Firebase](https://firebase.google.com) - Used as an middleware with react and spring 
+* [PostgreSQL](https://www.postgresql.org) - Gagnagrunnur 
+* [Firebase](https://firebase.google.com) - Used as an middleware with react and spring 
+
+
+# Group
 ## Þjálfari**(CEO) - Fannar G. Guðmundsson [Github](https://github.com/fgg2)
 * Er í forystu og leiðbeinir á fundum þar sem hópurinn er að forrita og hanna. 
 * Þjálfarinn hefur yfirsýn yfir hvernig teyminu gengur og hvetur aðra áfram. 
