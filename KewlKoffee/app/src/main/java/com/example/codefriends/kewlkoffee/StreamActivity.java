@@ -3,19 +3,15 @@ package com.example.codefriends.kewlkoffee;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.firebase.client.Firebase;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 import java.io.IOException;
@@ -38,9 +34,7 @@ public class StreamActivity extends AppCompatActivity {
 
     public static Room r;
 
-    ProgressDialog dialog;
     ImageView imageView;
-    ImageButton btnPlayPause;
     TextView nameView;
     private Button signupButton;
     private Button makingKoffeeButton;
@@ -50,7 +44,6 @@ public class StreamActivity extends AppCompatActivity {
 
     String streamUrl = r.getStream();
     String imageUrl;
-
 
 
     public static Intent newIntent (Context packageContext) {
@@ -95,9 +88,6 @@ public class StreamActivity extends AppCompatActivity {
                     }
                 });
                 nameView.setText(r.getName());
-                //Log.d("herbergi", "heitir " + r.getName());
-                //btnPlayPause = findViewById(R.id.btn_play_pause);
-                //btnPlayPause.setOnClickListener(view -> Picasso.with(getApplicationContext()).load(imageUrl).into(imageView));
                 imageView = findViewById(R.id.imageView);
                 Picasso.with(getApplicationContext()).load(imageUrl).into(imageView);
                 handler.postDelayed(this, delay);
@@ -115,7 +105,6 @@ public class StreamActivity extends AppCompatActivity {
             Log.d("topicname" , name);
 
             FirebaseMessaging.getInstance().subscribeToTopic(name);
-
         });
 
         wantKoffeeButton = findViewById(R.id.wantKoffee);
@@ -126,13 +115,6 @@ public class StreamActivity extends AppCompatActivity {
 
         koffeereadyButton = findViewById(R.id.koffeeReady);
         koffeereadyButton.setOnClickListener(v -> Notification.koffeeReady(r));
-
-
-
-
-
     }
-
-
 
 }

@@ -1,13 +1,9 @@
 package com.example.codefriends.kewlkoffee;
 
-import android.app.*;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -15,17 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import java.io.Serializable;
 import java.util.List;
-import java.util.Optional;
-
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-
 import com.firebase.client.Firebase;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -46,28 +33,11 @@ import retrofit2.Response;
 public class BoardActivity extends AppCompatActivity {
 
     private List<Room> rooms;
-    private Button switchButton;
-    private Button cameraButton;
-    private Button newRoom;
     private Button notifactionButton;
     private RoomsControl room;
-    private Button[] boards = new Button[20];
-    Context context = this;
     private int NEW_ROOM_CODE = 1;
     private int STREAM_CODE = 2;
     private int STREAM_EXIT_CODE = 3;
-
-    public static Intent newIntent (Context packageContext) {
-        Intent intent = new Intent(packageContext, StreamActivity.class);
-
-        return intent;
-    }
-
-    public static Intent newCamera (Context packageContext) {
-        Intent intent = new Intent(packageContext, ImageCaptureCamera2API.class);
-
-        return intent;
-    }
 
 
     private void loadRooms(List<Room> r) {
@@ -89,7 +59,6 @@ public class BoardActivity extends AppCompatActivity {
             String roomName = room.getName();
             int roomId = room.getId();
             room.setStream(roomId);
-            String roomUrl = room.getStream();
 
             Button buttonItem = new Button(this);
             buttonItem.setText(roomName);

@@ -59,11 +59,8 @@ public class RoomsControl {
      * @param url - streamUrl
      *
      */
-
-
     public void createRoom(String name, String admin, String url){
         this.rooms.add(new Room(rooms.size() + 1, name, admin, url));
-
     }
 
     /**
@@ -85,8 +82,6 @@ public class RoomsControl {
 
     public static void main(String[] args) {
         RoomsControl a = new RoomsControl();
-
-
     }
 
     public static String generateToken() {
