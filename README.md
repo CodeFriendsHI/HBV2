@@ -21,6 +21,7 @@ Android app sem er notað til að streyma myndum. hugmyndin var að nota það t
 * [Firebase](https://firebase.google.com) - umhverfi notað fyrir sjálft appið
 * [PostgreSQL](https://www.postgresql.org) - Gagnagrunnur 
 * [Firebase](https://firebase.google.com) - Used as an middleware with react and spring 
+* [Retrofit](https://square.github.io/retrofit/) - used for http requests
 
 
 # Group
